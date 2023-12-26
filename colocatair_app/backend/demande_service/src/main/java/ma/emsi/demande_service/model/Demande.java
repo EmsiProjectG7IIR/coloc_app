@@ -1,4 +1,4 @@
-package ma.emsi.user_service.Model;
+package ma.emsi.demande_service.model;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -11,15 +11,17 @@ import java.util.Date;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-@Table(name = "\"user\"")
-public class User {
+@Table(name = "\"demande\"")
+public class Demande {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private Long id;
-    private String nom;
-    private String prenom;
-    private String email;
-    @Column(name = "date_naissance")
-    private Date dateNaissance;
+    @ManyToOne
+    private User demandeur;
+    @ManyToOne
+    private Offre offre;
+    private String status;
+    @Column(name = "date_creation")
+    private Date dateCreation;
 }

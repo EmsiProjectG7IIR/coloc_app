@@ -1,12 +1,12 @@
-package ma.emsi.offre_service.service;
+package ma.emsi.demande_service.service;
 
-import ma.emsi.offre_service.entites.User;
+import ma.emsi.demande_service.model.User;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 
-@FeignClient(name="SERVICE-USER")
+@FeignClient(name = "user_service")
 public interface UserService {
         @GetMapping(path = "/api/user/find/{id}")
-        User userById (@PathVariable("id") Long id);
+        public User userById(@PathVariable Long id);
 }

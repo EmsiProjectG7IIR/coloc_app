@@ -1,7 +1,6 @@
 package ma.emsi.offre_service.entites;
 
 import jakarta.persistence.*;
-import jakarta.validation.constraints.NotBlank;
 import lombok.*;
 
 import java.util.Date;
@@ -11,15 +10,14 @@ import java.util.Date;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class Offre {
+public class Offer {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private  Long id;
-    private Long idCreateur;
+    private Long id;
+    private Long id_createur;
     @Transient
     @ManyToOne
     private User user;
-    //@NotBlank(message = "Le titre ne peut pas être vide")
     private String titre;
     private Date dateCreation;
     private Date dateDebut;
@@ -29,7 +27,4 @@ public class Offre {
     private double montant;
     private boolean status;
     private String photo;
-
-
-
 }
