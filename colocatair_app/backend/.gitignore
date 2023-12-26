@@ -1,0 +1,27 @@
+# Maven
+target/
+*.iml
+
+# Eclipse
+.classpath
+.project
+.settings/
+
+# IntelliJ
+.idea/
+*.iml
+*.iws
+*.ipr
+*.log
+
+# Spring Boot
+spring-boot-starter/target/
+spring-boot-sample/target/
+
+# Logs
+log/
+*.log
+
+# OS-specific files
+.DS_Store
+Thumbs.db
