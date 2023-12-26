@@ -1,0 +1,23 @@
+Microservice de Gestion des Utilisateurs :
+    Entité : Utilisateur
+    Attributs : ID utilisateur, nom, prénom, adresse e-mail, etc.
+
+Microservice de Gestion des Offres de Colocation :
+    Entité : Offre de Colocation
+    Attributs : ID offre, adresse du logement, règles de vie, préférences de colocation, etc.
+    Relation : Un utilisateur (propriétaire) peut créer plusieurs offres de colocation.
+
+Microservice de Gestion des Demandes de Colocation :
+    Entité : Demande de Colocation
+    Attributs : ID demande, ID utilisateur demandeur, ID offre associée, message d'accompagnement, statut (acceptée, rejetée, en attente), etc.
+    Relations :
+    Une demande est associée à un utilisateur demandeur.
+    Une demande est liée à une offre de colocation.
+
+Microservice de Consultation des Offres de Colocation :
+    Entité : Offre de Colocation (lecture seule)
+    Attributs : ID offre, adresse du logement, règles de vie, préférences de colocation, etc.
+
+
+Serveur Eureka :
+Rôle : Registre des services, permettant aux microservices de s'enregistrer et de découvrir les autres services disponibles.
