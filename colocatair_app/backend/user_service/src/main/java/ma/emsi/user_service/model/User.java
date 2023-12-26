@@ -1,4 +1,4 @@
-package ma.emsi.user_service.Model;
+package ma.emsi.user_service.model;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
