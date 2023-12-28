@@ -14,14 +14,19 @@ public class OfferController {
     @Autowired
     private OfferService offerService;
 
-    @PostMapping("/add")
-    public Offer creerOffre(@RequestBody Offer offer) {
-        return offerService.addOffer(offer);
+    @PostMapping("/save")
+    public Offer saveOffre(@RequestBody Offer offer) {
+        return offerService.save(offer);
     }
 
     @GetMapping("/all")
-    public List<Offer> getall() {
+    public List<Offer> findAll() {
         return offerService.findAll();
+    }
+
+    @GetMapping("/find/{id}")
+    public Offer findOffreById(@PathVariable Long id) throws Exception {
+        return offerService.findById(id).orElseThrow(() -> new Exception("User inexistant"));
     }
 }
 
