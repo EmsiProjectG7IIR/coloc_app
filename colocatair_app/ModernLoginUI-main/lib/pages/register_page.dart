@@ -16,60 +16,67 @@ class RegisterPage extends StatefulWidget {
 class _RegisterPageState extends State<RegisterPage> {
   // text editing controllers
   final emailController = TextEditingController();
-
   final passwordController = TextEditingController();
   final ConfirmPasswordController = TextEditingController();
 
   // sign user up method
   void signUserUp() async {
-
     // Show loading circle
-    showDialog(context: context, builder: (context){
-      return const Center(
-        child: CircularProgressIndicator(),
-      );
-    },);
+    showDialog(
+      context: context,
+      builder: (context) {
+        return const Center(
+          child: CircularProgressIndicator(),
+        );
+      },
+    );
     // try sign in
     try {
-      if(passwordController.text == ConfirmPasswordController.text){
+      if (passwordController.text == ConfirmPasswordController.text) {
         await FirebaseAuth.instance.createUserWithEmailAndPassword(
-      email: emailController.text,
-      password: passwordController.text,
-      );
+          email: emailController.text,
+          password: passwordController.text,
+        );
       } else {
         showErrorMessage(context, "Passwords don'\t match!!!");
       }
       // POP the circle
-    Navigator.pop(context);
-    } on FirebaseAuthException catch(e) {
+      Navigator.pop(context);
+    } on FirebaseAuthException catch (e) {
       // POP the circle
-    Navigator.pop(context);
-      if(e.code=='user-not-found'){
+      Navigator.pop(context);
+      if (e.code == 'user-not-found') {
         wrongEmailMessage();
-      }else if (e.code=='wrong-password'){
+      } else if (e.code == 'wrong-password') {
         wrongPasswordMessage();
       }
     }
   }
-  
-  void wrongEmailMessage(){
-    showDialog(context: context, builder: (context){
-      return const AlertDialog(
-        title: Center(
-          child: Text('INCORECT EMAIL'),
-        ),
-      );
-    },);
+
+  void wrongEmailMessage() {
+    showDialog(
+      context: context,
+      builder: (context) {
+        return const AlertDialog(
+          title: Center(
+            child: Text('INCORECT EMAIL'),
+          ),
+        );
+      },
+    );
   }
 
-  void wrongPasswordMessage(){
-    showDialog(context: context, builder: (context){
-      return const AlertDialog(
-        title: Center(
-          child: Text('INCORECT PASSWORD'),
-        ),
-      );
-    },);
+  void wrongPasswordMessage() {
+    showDialog(
+      context: context,
+      builder: (context) {
+        return const AlertDialog(
+          title: Center(
+            child: Text('INCORECT PASSWORD'),
+          ),
+        );
+      },
+    );
   }
 
   @override
@@ -83,15 +90,15 @@ class _RegisterPageState extends State<RegisterPage> {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 const SizedBox(height: 50),
-          
+
                 // logo
                 const Icon(
                   Icons.lock,
                   size: 50,
                 ),
-          
+
                 const SizedBox(height: 50),
-          
+
                 // welcome back, you've been missed!
                 Text(
                   'Let\'s create an account for you!',
@@ -100,25 +107,25 @@ class _RegisterPageState extends State<RegisterPage> {
                     fontSize: 16,
                   ),
                 ),
-          
+
                 const SizedBox(height: 25),
-          
+
                 // email textfield
                 MyTextField(
                   controller: emailController,
                   hintText: 'Username',
                   obscureText: false,
                 ),
-          
+
                 const SizedBox(height: 10),
-          
+
                 // password textfield
                 MyTextField(
                   controller: passwordController,
                   hintText: 'Password',
                   obscureText: true,
                 ),
-          
+
                 const SizedBox(height: 10),
 
                 // confirm password textfield
@@ -127,21 +134,19 @@ class _RegisterPageState extends State<RegisterPage> {
                   hintText: 'Confirm Password',
                   obscureText: true,
                 ),
-          
+
                 const SizedBox(height: 10),
-          
-                
-          
+
                 const SizedBox(height: 25),
-          
+
                 // sign in button
                 MyButton(
                   text: 'Sign Up',
                   onTap: signUserUp,
                 ),
-          
+
                 const SizedBox(height: 50),
-          
+
                 // or continue with
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 25.0),
@@ -169,25 +174,25 @@ class _RegisterPageState extends State<RegisterPage> {
                     ],
                   ),
                 ),
-          
+
                 const SizedBox(height: 50),
-          
+
                 // google + apple sign in buttons
-                Row(
+                const Row(
                   mainAxisAlignment: MainAxisAlignment.center,
-                  children: const [
+                  children: [
                     // google button
                     SquareTile(imagePath: 'lib/images/google.png'),
-          
+
                     SizedBox(width: 25),
-          
+
                     // apple button
                     SquareTile(imagePath: 'lib/images/apple.png')
                   ],
                 ),
-          
+
                 const SizedBox(height: 50),
-          
+
                 // not a member? register now
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
