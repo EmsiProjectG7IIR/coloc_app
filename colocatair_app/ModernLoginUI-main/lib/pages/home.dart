@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:modernlogintute/model/offer_model.dart';
-import 'package:modernlogintute/service/offer_service.dart';
+import 'package:modernlogintute/service/offer_service.dart'; // Import your OfferModel
 
 class Home extends StatelessWidget {
-  const Home({super.key});
+  const Home({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -14,20 +14,14 @@ class Home extends StatelessWidget {
 }
 
 class CardCarousel extends StatefulWidget {
-  const CardCarousel({super.key});
+  const CardCarousel({Key? key}) : super(key: key);
 
   @override
   _CardCarouselState createState() => _CardCarouselState();
 }
 
 class _CardCarouselState extends State<CardCarousel> {
-
   late List<OfferModel> offers;
-  // final List<String> offers = [
-  //   'Special Offer 1',
-  //   'Special Offer 2',
-  //   'Special Offer 3'
-  // ];
   int currentIndex = 0;
 
   @override
@@ -44,59 +38,46 @@ class _CardCarouselState extends State<CardCarousel> {
   }
 
   void _handleAccept() {
-    // print('Accepted: ${offers[currentIndex]}');
+    // Handle accept button click
+    // You can make another API call or perform other actions here
     _moveToNextCard();
   }
 
   void _handleRefuse() {
-    // print('Refused: ${offers[currentIndex]}');
+    // Handle refuse button click
+    // You can make another API call or perform other actions here
     _moveToNextCard();
   }
 
   void _moveToNextCard() {
-    // setState(() {
-    //   currentIndex = (currentIndex + 1).clamp(0, offers.length - 1);
-    // });
+    setState(() {
+      currentIndex = (currentIndex + 1).clamp(0, offers.length - 1);
+    });
   }
 
   void _moveToPreviousCard() {
-    // setState(() {
-    //   currentIndex = (currentIndex - 1).clamp(0, offers.length - 1);
-    // });
+    setState(() {
+      currentIndex = (currentIndex - 1).clamp(0, offers.length - 1);
+    });
   }
 
   @override
   Widget build(BuildContext context) {
-    return FutureBuilder(
-        future: OfferService.getData(),
-        builder: (context, snapshot) {
-          if (snapshot.hasData) {
-            return
-                // snapshot.data.length == 0
-                //     ? const NoDataWidget()
-                //     :
-                Padding(
-                    padding: const EdgeInsets.only(top: 0.0, left: 8, right: 8),
-                    child: _build(snapshot.data));
-          } else if (snapshot.hasError) {
-            // return const IErrorWidget();
-            return Container();
-          } else {
-            // return const LoadingIndicatorWidget();
-            return Container();
-          }
-        });
-  }
+    if (offers.isEmpty) {
+      // Handle case where offers are empty
+      return const Center(
+        child: Text('No offers available.'),
+      );
+    }
 
-  Widget _build(offers) {
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
         SizedBox(
-          height: 500.0, // Adjust the height as needed
+          height: 500.0,
           child: Card(
             margin: const EdgeInsets.all(16.0),
-            color: Colors.lightBlue[100], // Set light blue background color
+            color: Colors.lightBlue[100],
             child: Column(
               children: [
                 ListTile(
