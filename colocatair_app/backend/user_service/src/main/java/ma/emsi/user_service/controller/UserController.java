@@ -11,25 +11,23 @@ import java.util.List;
 @RestController
 @RequestMapping("api/user")
 public class UserController {
-    @Autowired
-    UserRepository userRepository;
 
     @Autowired
     UserService userService;
 
     @GetMapping("/all")
     public List chercherClients() {
-        return userRepository.findAll();
+        return userService.findAll();
     }
 
     @GetMapping("/find/{id}")
     public User chercherUnClients(@PathVariable Long id) throws Exception {
-        return this.userRepository.findById(id).orElseThrow(() -> new Exception("User inexistant"));
+        return userService.findById(id).orElseThrow(() -> new Exception("User inexistant"));
     }
 
-    @PostMapping("/add")
+    @PostMapping("/save")
     public User createUser(@RequestBody User user) {
-        return userService.saveUser(user);
+        return userService.save(user);
     }
 
 }

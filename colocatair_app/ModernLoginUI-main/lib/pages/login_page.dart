@@ -20,50 +20,58 @@ class _LoginPageState extends State<LoginPage> {
 
   // sign user in method
   void signUserIn() async {
-
     // Show loading circle
-    showDialog(context: context, builder: (context){
-      return const Center(
-        child: CircularProgressIndicator(),
-      );
-    },);
+    showDialog(
+      context: context,
+      builder: (context) {
+        return const Center(
+          child: CircularProgressIndicator(),
+        );
+      },
+    );
     // try sign in
     try {
       await FirebaseAuth.instance.signInWithEmailAndPassword(
-      email: emailController.text,
-      password: passwordController.text,
+        email: emailController.text,
+        password: passwordController.text,
       );
       // POP the circle
-    Navigator.pop(context);
-    } on FirebaseAuthException catch(e) {
+      Navigator.pop(context);
+    } on FirebaseAuthException catch (e) {
       // POP the circle
-    Navigator.pop(context);
-      if(e.code=='user-not-found'){
+      Navigator.pop(context);
+      if (e.code == 'user-not-found') {
         wrongEmailMessage();
-      }else if (e.code=='wrong-password'){
+      } else if (e.code == 'wrong-password') {
         wrongPasswordMessage();
       }
     }
   }
-  
-  void wrongEmailMessage(){
-    showDialog(context: context, builder: (context){
-      return const AlertDialog(
-        title: Center(
-          child: Text('INCORECT EMAIL'),
-        ),
-      );
-    },);
+
+  void wrongEmailMessage() {
+    showDialog(
+      context: context,
+      builder: (context) {
+        return const AlertDialog(
+          title: Center(
+            child: Text('INCORECT EMAIL'),
+          ),
+        );
+      },
+    );
   }
 
-  void wrongPasswordMessage(){
-    showDialog(context: context, builder: (context){
-      return const AlertDialog(
-        title: Center(
-          child: Text('INCORECT PASSWORD'),
-        ),
-      );
-    },);
+  void wrongPasswordMessage() {
+    showDialog(
+      context: context,
+      builder: (context) {
+        return const AlertDialog(
+          title: Center(
+            child: Text('INCORECT PASSWORD'),
+          ),
+        );
+      },
+    );
   }
 
   @override
@@ -77,15 +85,15 @@ class _LoginPageState extends State<LoginPage> {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 const SizedBox(height: 50),
-          
+
                 // logo
                 const Icon(
                   Icons.lock,
                   size: 100,
                 ),
-          
+
                 const SizedBox(height: 50),
-          
+
                 // welcome back, you've been missed!
                 Text(
                   'Welcome back you\'ve been missed!',
@@ -94,27 +102,27 @@ class _LoginPageState extends State<LoginPage> {
                     fontSize: 16,
                   ),
                 ),
-          
+
                 const SizedBox(height: 25),
-          
+
                 // email textfield
                 MyTextField(
                   controller: emailController,
                   hintText: 'Username',
                   obscureText: false,
                 ),
-          
+
                 const SizedBox(height: 10),
-          
+
                 // password textfield
                 MyTextField(
                   controller: passwordController,
                   hintText: 'Password',
                   obscureText: true,
                 ),
-          
+
                 const SizedBox(height: 10),
-          
+
                 // forgot password?
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 25.0),
@@ -128,17 +136,17 @@ class _LoginPageState extends State<LoginPage> {
                     ],
                   ),
                 ),
-          
+
                 const SizedBox(height: 25),
-          
+
                 // sign in button
                 MyButton(
                   text: 'Sign In',
                   onTap: signUserIn,
                 ),
-          
+
                 const SizedBox(height: 50),
-          
+
                 // or continue with
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 25.0),
@@ -166,25 +174,25 @@ class _LoginPageState extends State<LoginPage> {
                     ],
                   ),
                 ),
-          
+
                 const SizedBox(height: 50),
-          
+
                 // google + apple sign in buttons
-                Row(
+                const Row(
                   mainAxisAlignment: MainAxisAlignment.center,
-                  children: const [
+                  children: [
                     // google button
                     SquareTile(imagePath: 'lib/images/google.png'),
-          
+
                     SizedBox(width: 25),
-          
+
                     // apple button
                     SquareTile(imagePath: 'lib/images/apple.png')
                   ],
                 ),
-          
+
                 const SizedBox(height: 50),
-          
+
                 // not a member? register now
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,

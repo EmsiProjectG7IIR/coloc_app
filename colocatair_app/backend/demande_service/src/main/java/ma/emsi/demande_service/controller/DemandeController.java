@@ -27,9 +27,9 @@ public class DemandeController {
         return this.demandeRepository.findById(id).orElseThrow(() -> new Exception("User inexistant"));
     }
 
-    @PostMapping("/add")
+    @PostMapping("/save")
     public Demande createUser(@RequestBody Demande demande) {
-        return demandeService.saveDemande(demande);
+        return demandeService.save(demande);
     }
 
 }
