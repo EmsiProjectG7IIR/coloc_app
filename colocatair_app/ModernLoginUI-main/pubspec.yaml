@@ -42,6 +42,8 @@ dependencies:
   google_fonts: ^6.1.0
   flutter_swipable: ^1.2.1
   swipable_stack: ^2.0.0
+  flutter_form_builder: ^9.1.1
+  mysql1: ^0.20.0
   
 
 dev_dependencies:

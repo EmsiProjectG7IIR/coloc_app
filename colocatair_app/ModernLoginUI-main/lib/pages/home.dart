@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:modernlogintute/model/offer_model.dart';
+import 'package:modernlogintute/model/offre_list_model.dart';
 import 'package:modernlogintute/service/offer_service.dart'; // Import your OfferModel
 
 class Home extends StatelessWidget {
@@ -21,7 +22,7 @@ class CardCarousel extends StatefulWidget {
 }
 
 class _CardCarouselState extends State<CardCarousel> {
-  late List<OfferModel> offers;
+  late List<OfferListModel> offers;
   int currentIndex = 0;
 
   @override
@@ -33,19 +34,15 @@ class _CardCarouselState extends State<CardCarousel> {
   Future<void> fetchOffers() async {
     final data = await OfferService.getData();
     setState(() {
-      offers = data.cast<OfferModel>();
+      offers = data.cast<OfferListModel>();
     });
   }
 
   void _handleAccept() {
-    // Handle accept button click
-    // You can make another API call or perform other actions here
     _moveToNextCard();
   }
 
   void _handleRefuse() {
-    // Handle refuse button click
-    // You can make another API call or perform other actions here
     _moveToNextCard();
   }
 
@@ -64,7 +61,6 @@ class _CardCarouselState extends State<CardCarousel> {
   @override
   Widget build(BuildContext context) {
     if (offers.isEmpty) {
-      // Handle case where offers are empty
       return const Center(
         child: Text('No offers available.'),
       );
