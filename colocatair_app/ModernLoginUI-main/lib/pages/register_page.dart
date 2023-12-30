@@ -4,6 +4,9 @@ import 'package:flutter_dialog_helper/flutter_dialog_helper.dart';
 import 'package:modernlogintute/components/my_button.dart';
 import 'package:modernlogintute/components/my_textfield.dart';
 import 'package:modernlogintute/components/square_tile.dart';
+import 'package:modernlogintute/model/user_model.dart';
+import 'package:modernlogintute/pages/toast_message.dart';
+import 'package:modernlogintute/service/auth_service.dart';
 
 class RegisterPage extends StatefulWidget {
   final Function()? onTap;
@@ -14,14 +17,15 @@ class RegisterPage extends StatefulWidget {
 }
 
 class _RegisterPageState extends State<RegisterPage> {
-  // text editing controllers
-  final emailController = TextEditingController();
-  final passwordController = TextEditingController();
-  final ConfirmPasswordController = TextEditingController();
+  final TextEditingController _emailController = TextEditingController();
+  final TextEditingController _passwordController = TextEditingController();
+  final TextEditingController _confirmPasswordController =
+      TextEditingController();
+  final TextEditingController _firstNameController = TextEditingController();
+  final TextEditingController _lastNameController = TextEditingController();
 
   // sign user up method
   void signUserUp() async {
-    // Show loading circle
     showDialog(
       context: context,
       builder: (context) {
@@ -32,16 +36,30 @@ class _RegisterPageState extends State<RegisterPage> {
     );
     // try sign in
     try {
-      if (passwordController.text == ConfirmPasswordController.text) {
-        await FirebaseAuth.instance.createUserWithEmailAndPassword(
-          email: emailController.text,
-          password: passwordController.text,
+      if (_passwordController.text == _confirmPasswordController.text) {
+        final res = await FirebaseAuth.instance.createUserWithEmailAndPassword(
+          email: _emailController.text,
+          password: _passwordController.text,
         );
+        String? uid = res.user?.uid;
+        final userModel = UserModel(
+          email: _emailController.text,
+          prenom: _lastNameController.text,
+          nom: _firstNameController.text,
+          dateNaissance: "1990-01-01",
+          uid: uid,
+        );
+        try {
+          await AuthService.signup(userModel);
+          ToastMsg.showToastMsg("Registed");
+          Navigator.pop(context);
+          // Get.offAllNamed('/HomePage');
+        } catch (e) {
+          ToastMsg.showToastMsg("Smoothing went wrong");
+        }
       } else {
-        showErrorMessage(context, "Passwords don'\t match!!!");
+        showErrorMessage(context, "Passwords don'\tmatch!!!");
       }
-      // POP the circle
-      Navigator.pop(context);
     } on FirebaseAuthException catch (e) {
       // POP the circle
       Navigator.pop(context);
@@ -109,11 +127,24 @@ class _RegisterPageState extends State<RegisterPage> {
                 ),
 
                 const SizedBox(height: 25),
+                MyTextField(
+                  controller: _lastNameController,
+                  hintText: 'Nom',
+                  obscureText: false,
+                ),
+                const SizedBox(height: 10),
+
+                MyTextField(
+                  controller: _firstNameController,
+                  hintText: 'Prenom',
+                  obscureText: false,
+                ),
+                const SizedBox(height: 10),
 
                 // email textfield
                 MyTextField(
-                  controller: emailController,
-                  hintText: 'Username',
+                  controller: _emailController,
+                  hintText: 'Email',
                   obscureText: false,
                 ),
 
@@ -121,7 +152,7 @@ class _RegisterPageState extends State<RegisterPage> {
 
                 // password textfield
                 MyTextField(
-                  controller: passwordController,
+                  controller: _passwordController,
                   hintText: 'Password',
                   obscureText: true,
                 ),
@@ -130,7 +161,7 @@ class _RegisterPageState extends State<RegisterPage> {
 
                 // confirm password textfield
                 MyTextField(
-                  controller: ConfirmPasswordController,
+                  controller: _confirmPasswordController,
                   hintText: 'Confirm Password',
                   obscureText: true,
                 ),
@@ -191,7 +222,7 @@ class _RegisterPageState extends State<RegisterPage> {
                   ],
                 ),
 
-                const SizedBox(height: 50),
+                const SizedBox(height: 30),
 
                 // not a member? register now
                 Row(
@@ -212,6 +243,7 @@ class _RegisterPageState extends State<RegisterPage> {
                         ),
                       ),
                     ),
+                    const SizedBox(height: 50),
                   ],
                 )
               ],
