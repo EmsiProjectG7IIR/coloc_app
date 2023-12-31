@@ -1,6 +1,5 @@
 package ma.emsi.demande_service.model;
 
-import jakarta.persistence.Entity;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -12,7 +11,7 @@ import java.util.Date;
 @NoArgsConstructor
 public class Offer {
     private Long id;
-    private Long id_createur;
+    private Long idCreateur;
     private User user;
     private String titre;
     private Date dateCreation;
