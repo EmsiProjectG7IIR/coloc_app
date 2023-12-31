@@ -1,10 +1,12 @@
+import 'dart:developer';
+
 class UserModel {
   int? id;
   String? nom;
   String? prenom;
   String? email;
   String? dateNaissance;
-  int? uid;
+  String? uid;
 
   UserModel(
       {this.id,
@@ -24,8 +26,8 @@ class UserModel {
   }
 
   Map<String, dynamic> toJson() {
+    log("ffff");
     final Map<String, dynamic> data = <String, dynamic>{};
-    data['id'] = id;
     data['nom'] = nom;
     data['prenom'] = prenom;
     data['email'] = email;

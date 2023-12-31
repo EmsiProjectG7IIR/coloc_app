@@ -4,8 +4,8 @@ import 'package:http/http.dart' as http;
 import 'package:modernlogintute/model/user_model.dart';
 
 class UserService {
-  static const _viewUrl = "$apiUrlUser/get_user";
-  static const _addUrl = "$apiUrlUser/add_user";
+  static const _viewUrl = "$apiUrlUser/all";
+  static const _addUrl = "$apiUrlUser/save";
   // static const _update = "$apiUrl/update_user_fcm";
   // static const _updateUrl = "$apiUrl/update_user";
   // static const _registreUrl = "$apiUrl/signup";
