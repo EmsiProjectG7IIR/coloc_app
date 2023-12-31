@@ -6,38 +6,49 @@ import ma.emsi.demande_service.model.Demande;
 import ma.emsi.demande_service.model.Offer;
 import ma.emsi.demande_service.model.User;
 import ma.emsi.demande_service.repository.DemandeRepository;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 @Service
 public class DemandeService implements IDao<Demande> {
 
-    @Autowired
-    DemandeRepository demandeRepository;
 
-    @Autowired
-    UserService userService;
 
-    @Autowired
-    OfferService offerService;
+    private final UserService userService;
 
+
+    private final OfferService offerService;
+
+
+    private final DemandeRepository demandeRepository;
+
+    private static final Logger logger = LoggerFactory.getLogger(Demande.class);
+
+
+    public DemandeService(UserService userService,DemandeRepository demandeRepository, OfferService offerService) {
+        this.offerService = offerService;
+        this.userService = userService;
+
+        this.demandeRepository=demandeRepository;
+    }
     @Override
     public Demande save(Demande demande) {
-        User user = userService.userById(demande.getDemandeur_id());
-        Offer offer = offerService.offerById(demande.getOffer_id());
+        User user = userService.userById(demande.getDemandeurId());
+        Offer offer = offerService.offerById(demande.getOfferId());
 
         if (user == null){
-            System.out.println("User not found!!");
+            logger.warn("User not found!!");
             return null;
         }else{
             System.out.println("test : "+user);
             demande.setDemandeur(user);
-            demande.setDemandeur_id(user.getId());
+            demande.setDemandeurId(user.getId());
             demande.setOffer(offer);
-            demande.setOffer_id(offer.getId());
+            demande.setOfferId(offer.getId());
             return demandeRepository.save(demande);
         }
     }

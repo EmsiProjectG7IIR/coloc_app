@@ -1,0 +1,58 @@
+
+ma.emsi.demande_service.controller.DemandeController#chercherUnClients(Ljava/lang/Long;)Lma/emsi/demande_service/model/Demande;¡
+∂/C:/Users/casper/Documents/emsi5/essabar/offreserviceApp/colocatair_app/colocatair_app/backend/demande_service/src/main/java/ma/emsi/demande_service/controller/DemandeController.java ($"startingBlock*õ
+startingBlock$ (;~
+|
+ (
+%2"
+__annotate**
+
+__unknown_file (
+
+GetMapping*2
+
+__unknown_file (
+
+idjava.lang.LongÄ
+~
+% (2
+%3"
+__annotate*,
+
+__unknown_file (
+PathVariable*2
+
+__unknown_file (
+
+idjava.lang.Longx
+v
+8 (:
+idjava.lang.Long"__annotation*"
+
+__unknown_file (
+
+%2*"
+
+__unknown_file (
+
+%3*
+1*
+1 (º
+π
+ (%:
+%04ma.emsi.demande_service.repository.DemandeRepository"__id*k
+
+__unknown_file (O*M6
+4ma.emsi.demande_service.controller.DemandeController"
+demandeRepositoryç
+ä
+? (e
+%1"__declareFunction*e
+
+__unknown_file (IG
+E__sonar_lambda_0$ma.emsi.demande_service.controller.DemandeController"
+ (g
+"": 
+% (:
+idjava.lang.LongB86
+4ma.emsi.demande_service.controller.DemandeControllerH
