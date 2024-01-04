@@ -1,0 +1,79 @@
+
+sma.emsi.user_service.controller.UserController#chercherUnClients(Ljava/lang/Long;)Lma/emsi/user_service/model/User;¸
+­/C:/Users/casper/Documents/emsi5/essabar/offreserviceApp/colocatair_app/colocatair_app/backend/user_service/src/main/java/ma/emsi/user_service/controller/UserController.java (!"startingBlock*›
+startingBlock! (8~
+|
+ (
+%6"
+__annotate**
+
+__unknown_file (
+
+GetMapping*2
+
+__unknown_file (
+
+idjava.lang.Long€
+~
+" (/
+%7"
+__annotate*,
+
+__unknown_file (
+PathVariable*2
+
+__unknown_file (
+
+idjava.lang.Longx
+v
+5 (7
+idjava.lang.Long"__annotation*"
+
+__unknown_file (
+
+%6*"
+
+__unknown_file (
+
+%7*
+1*Þ
+1 (¤
+¡
+ (.
+%0(ma.emsi.user_service.service.UserService"__id*_
+
+__unknown_file (C*A0
+.ma.emsi.user_service.controller.UserController"
+userServicež›
+ ('
+%1java.util.Optional"Wma.emsi.user_service.service.UserService#findById(Ljava/lang/Long;)Ljava/util/Optional;*L
+
+__unknown_file (0
+.
+%0(ma.emsi.user_service.service.UserService*2
+
+__unknown_file (
+
+idjava.lang.Long2findById(Ljava/lang/Long;)¤
+¡
+4 (Z!
+%2java.util.function.Supplier"__declareFunction*_
+
+__unknown_file (CA
+?__sonar_lambda_0$ma.emsi.user_service.controller.UserControllerª§
+ ([%
+%5ma.emsi.user_service.model.User"Ojava.util.Optional#orElseThrow(Ljava/util/function/Supplier;)Ljava/lang/Object;*6
+
+__unknown_file (
+
+%1java.util.Optional*?
+
+__unknown_file (#
+!
+%2java.util.function.Supplier2*orElseThrow(Ljava/util/function/Supplier;)"3
+ (\'
+%
+%5ma.emsi.user_service.model.User: 
+" (7
+idjava.lang.LongB20
+.ma.emsi.user_service.controller.UserControllerH

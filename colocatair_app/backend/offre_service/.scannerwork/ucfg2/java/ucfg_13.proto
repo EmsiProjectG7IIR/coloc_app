@@ -1,0 +1,62 @@
+
+†ma.emsi.offre_service.controller.OfferController#saveOffre(Lma/emsi/offre_service/entites/Offer;)Lma/emsi/offre_service/entites/Offer;»
+°/C:/Users/casper/Documents/emsi5/essabar/offreserviceApp/colocatair_app/colocatair_app/backend/offre_service/src/main/java/ma/emsi/offre_service/controller/OfferController.java ("startingBlock*è
+startingBlock (4˜
+•
+ (
+%2"
+__annotate*+
+
+__unknown_file (
+PostMapping*J
+
+__unknown_file (.
+,
+offer#ma.emsi.offre_service.entites.Offer˜
+•
+ ('
+%3"
+__annotate*+
+
+__unknown_file (
+RequestBody*J
+
+__unknown_file (.
+,
+offer#ma.emsi.offre_service.entites.Offer‘
+Ž
+. (3,
+offer#ma.emsi.offre_service.entites.Offer"__annotation*"
+
+__unknown_file (
+
+%2*"
+
+__unknown_file (
+
+%3*
+1*ó
+1 (©
+¦
+ (0
+%0*ma.emsi.offre_service.service.OfferService"__id*b
+
+__unknown_file (F*D2
+0ma.emsi.offre_service.controller.OfferController"
+offerServiceþû
+ (')
+%1#ma.emsi.offre_service.entites.Offer"{ma.emsi.offre_service.service.OfferService#save(Lma/emsi/offre_service/entites/Offer;)Lma/emsi/offre_service/entites/Offer;*N
+
+__unknown_file (2
+0
+%0*ma.emsi.offre_service.service.OfferService*J
+
+__unknown_file (.
+,
+offer#ma.emsi.offre_service.entites.Offer2+save(Lma/emsi/offre_service/entites/Offer;)"7
+ ((+
+)
+%1#ma.emsi.offre_service.entites.Offer:8
+ (3,
+offer#ma.emsi.offre_service.entites.OfferB42
+0ma.emsi.offre_service.controller.OfferControllerH

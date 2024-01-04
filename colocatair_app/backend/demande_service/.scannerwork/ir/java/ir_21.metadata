@@ -1,1 +1,3 @@
-ma.emsi.demande_service.controller.DemandeController#<init>()V
+ma.emsi.demande_service.controller.DemandeController#createDemande(Lma/emsi/demande_service/model/Demande;)Lma/emsi/demande_service/model/Demande;
+==
+save ma.emsi.demande_service.service.DemandeService#save(Lma/emsi/demande_service/model/Demande;)Lma/emsi/demande_service/model/Demande;

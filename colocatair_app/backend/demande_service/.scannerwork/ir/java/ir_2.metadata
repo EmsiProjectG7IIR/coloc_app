@@ -1,1 +1,4 @@
-ma.emsi.demande_service.service.DemandeService#instance-init#
+ma.emsi.demande_service.service.DemandeService#save(Lma/emsi/demande_service/model/Demande;)Lma/emsi/demande_service/model/Demande;
+==
+offerById ma.emsi.demande_service.service.OfferService#offerById(Ljava/lang/Long;)Lma/emsi/demande_service/model/Offer;
+userById ma.emsi.demande_service.service.UserService#userById(Ljava/lang/Long;)Lma/emsi/demande_service/model/User;

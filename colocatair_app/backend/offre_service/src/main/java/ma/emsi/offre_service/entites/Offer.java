@@ -14,7 +14,7 @@ public class Offer {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private Long id_createur;
+    private Long idCreateur;
     @Transient
     @ManyToOne
     private User user;
@@ -27,4 +27,22 @@ public class Offer {
     private double montant;
     private boolean status;
     private String photo;
+
+    @Override
+    public String toString() {
+        return "Offer{" +
+                "id=" + id +
+                ", idCreateur=" + idCreateur +
+                ", user=" + user +
+                ", titre='" + titre + '\'' +
+                ", dateCreation=" + dateCreation +
+                ", dateDebut=" + dateDebut +
+                ", dateFin=" + dateFin +
+                ", description='" + description + '\'' +
+                ", adresse='" + adresse + '\'' +
+                ", montant=" + montant +
+                ", status=" + status +
+                ", photo='" + photo + '\'' +
+                '}';
+    }
 }

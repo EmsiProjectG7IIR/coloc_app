@@ -16,4 +16,18 @@ public class User {
     private String prenom;
     private String email;
     private Date dateNaissance;
+
+
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "id=" + id +
+                ", uId=" + uId +
+                ", nom='" + nom + '\'' +
+                ", prenom='" + prenom + '\'' +
+                ", email='" + email + '\'' +
+                ", dateNaissance=" + dateNaissance +
+                '}';
+    }
 }

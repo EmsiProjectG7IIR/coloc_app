@@ -3,6 +3,7 @@ package ma.emsi.demande_service.controller;
 import ma.emsi.demande_service.model.Demande;
 import ma.emsi.demande_service.repository.DemandeRepository;
 import ma.emsi.demande_service.service.DemandeService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -11,23 +12,18 @@ import java.util.List;
 @RequestMapping("api/demande")
 public class DemandeController {
 
-    private final DemandeRepository demandeRepository;
+    @Autowired
+    public DemandeService demandeService;
 
-    private final DemandeService demandeService;
-
-    public DemandeController(DemandeService demandeService,DemandeRepository demandeRepository) {
-        this.demandeService = demandeService;
-        this.demandeRepository=demandeRepository;
-    }
 
     @GetMapping("/all")
     public List<Demande> chercherDemandes() {
-        return demandeRepository.findAll();
+        return demandeService.findAll();
     }
 
     @GetMapping("/find/{id}")
     public Demande chercherUnDemande(@PathVariable Long id) throws Exception {
-        return this.demandeRepository.findById(id).orElseThrow(() -> new Exception("User inexistant"));
+        return this.demandeService.findById(id).orElseThrow(() -> new Exception("User inexistant"));
     }
 
     @PostMapping("/save")

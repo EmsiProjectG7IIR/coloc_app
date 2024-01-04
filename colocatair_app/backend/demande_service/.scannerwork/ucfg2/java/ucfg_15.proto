@@ -1,0 +1,62 @@
+
+íma.emsi.demande_service.controller.DemandeController#createDemande(Lma/emsi/demande_service/model/Demande;)Lma/emsi/demande_service/model/Demande;¡
+∂/C:/Users/casper/Documents/emsi5/essabar/offreserviceApp/colocatair_app/colocatair_app/backend/demande_service/src/main/java/ma/emsi/demande_service/controller/DemandeController.java ( "startingBlock*Ù
+startingBlock  (>ú
+ô
+ (
+%2"
+__annotate*+
+
+__unknown_file (
+PostMapping*N
+
+__unknown_file (2
+0
+demande%ma.emsi.demande_service.model.Demandeú
+ô
+! (-
+%3"
+__annotate*+
+
+__unknown_file (
+RequestBody*N
+
+__unknown_file (2
+0
+demande%ma.emsi.demande_service.model.Demandeï
+í
+6 (=0
+demande%ma.emsi.demande_service.model.Demande"__annotation*"
+
+__unknown_file (
+
+%2*"
+
+__unknown_file (
+
+%3*
+1*î
+1 (≥
+∞
+ (4
+%0.ma.emsi.demande_service.service.DemandeService"__id*h
+
+__unknown_file (L*J6
+4ma.emsi.demande_service.controller.DemandeController"
+demandeServiceìê
+ (++
+%1%ma.emsi.demande_service.model.Demande"Éma.emsi.demande_service.service.DemandeService#save(Lma/emsi/demande_service/model/Demande;)Lma/emsi/demande_service/model/Demande;*R
+
+__unknown_file (6
+4
+%0.ma.emsi.demande_service.service.DemandeService*N
+
+__unknown_file (2
+0
+demande%ma.emsi.demande_service.model.Demande2-save(Lma/emsi/demande_service/model/Demande;)"9
+ (,-
++
+%1%ma.emsi.demande_service.model.Demande:<
+! (=0
+demande%ma.emsi.demande_service.model.DemandeB86
+4ma.emsi.demande_service.controller.DemandeControllerH

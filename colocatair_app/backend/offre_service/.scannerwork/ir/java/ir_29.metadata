@@ -1,0 +1,4 @@
+ma.emsi.offre_service.controller.OfferController#findOffreById(Ljava/lang/Long;)Lma/emsi/offre_service/entites/Offer;
+java.util.Optional#orElseThrow(Ljava/util/function/Supplier;)Ljava/lang/Object;
+==
+findById ma.emsi.offre_service.service.OfferService#findById(Ljava/lang/Long;)Ljava/util/Optional;

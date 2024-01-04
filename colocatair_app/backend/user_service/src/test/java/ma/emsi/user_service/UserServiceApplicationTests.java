@@ -55,7 +55,7 @@ class UserServiceApplicationTests {
     @Test
     void shouldSaveUser() {
         // Create a user to be saved
-        User newUser = new User(null, 123L, "John", "Doe", "john.doe@example.com", new Date());
+        User newUser = new User(1L, 123L, "John", "Doe", "john.doe@example.com", new Date());
 
         // Mocking the UserRepository behavior
         when(userRepository.save(any(User.class))).thenReturn(newUser);

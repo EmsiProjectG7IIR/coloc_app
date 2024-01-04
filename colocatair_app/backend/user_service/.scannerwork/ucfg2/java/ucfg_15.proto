@@ -1,0 +1,47 @@
+
+Wma.emsi.user_service.service.UserService#findById(Ljava/lang/Long;)Ljava/util/Optional;²
+§/C:/Users/casper/Documents/emsi5/essabar/offreserviceApp/colocatair_app/colocatair_app/backend/user_service/src/main/java/ma/emsi/user_service/service/UserService.java' '(""startingBlock*þ
+startingBlock'" '(+‡
+„
+& &(
+%2"
+__annotate*2
+
+__unknown_file (
+java.lang.Override*2
+
+__unknown_file (
+
+idjava.lang.LongT
+R
+'( '(*
+idjava.lang.Long"__annotation*"
+
+__unknown_file (
+
+%2*
+1*Œ
+1( ((§
+¤
+( ((4
+%0.ma.emsi.user_service.repository.UserRepository"__id*\
+
+__unknown_file (@*>*
+(ma.emsi.user_service.service.UserService"
+userRepositoryª§
+( ((*
+%1java.util.Optional"]ma.emsi.user_service.repository.UserRepository#findById(Ljava/lang/Long;)Ljava/util/Optional;*R
+
+__unknown_file (6
+4
+%0.ma.emsi.user_service.repository.UserRepository*2
+
+__unknown_file (
+
+idjava.lang.Long2findById(Ljava/lang/Long;)"&
+( ((+
+
+%1java.util.Optional: 
+'# '(*
+idjava.lang.LongB,*
+(ma.emsi.user_service.service.UserServiceH
