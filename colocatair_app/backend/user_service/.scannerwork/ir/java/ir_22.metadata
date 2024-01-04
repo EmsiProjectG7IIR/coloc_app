@@ -1,0 +1,3 @@
+ma.emsi.user_service.service.UserService#delete(Lma/emsi/user_service/model/User;)V
+java.lang.UnsupportedOperationException#instance-init#
+java.lang.UnsupportedOperationException#<init>(Ljava/lang/String;)V

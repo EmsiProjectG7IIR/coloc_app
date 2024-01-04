@@ -1,0 +1,7 @@
+organization=colocsonartest
+projectKey=colocsonartest_offretest
+serverUrl=https://sonarcloud.io
+serverVersion=8.0.0.51767
+dashboardUrl=https://sonarcloud.io/dashboard?id=colocsonartest_offretest
+ceTaskId=AYzSV05DwCJTNCr3dnXg
+ceTaskUrl=https://sonarcloud.io/api/ce/task?id=AYzSV05DwCJTNCr3dnXg

@@ -10,8 +10,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+
 
 @Service
 public class DemandeService implements IDao<Demande> {
@@ -22,11 +21,9 @@ public class DemandeService implements IDao<Demande> {
 
 
     private final OfferService offerService;
-
-
     private final DemandeRepository demandeRepository;
 
-    private static final Logger logger = LoggerFactory.getLogger(Demande.class);
+
 
 
     public DemandeService(UserService userService,DemandeRepository demandeRepository, OfferService offerService) {
@@ -40,11 +37,12 @@ public class DemandeService implements IDao<Demande> {
         User user = userService.userById(demande.getDemandeurId());
         Offer offer = offerService.offerById(demande.getOfferId());
 
+
         if (user == null){
-            logger.warn("User not found!!");
+
             return null;
         }else{
-            System.out.println("test : "+user);
+
             demande.setDemandeur(user);
             demande.setDemandeurId(user.getId());
             demande.setOffer(offer);
@@ -55,12 +53,12 @@ public class DemandeService implements IDao<Demande> {
 
     @Override
     public void update(Demande o) {
-
+        demandeRepository.update(o);
     }
 
     @Override
     public void delete(Demande o) {
-
+        demandeRepository.delete(o);
     }
 
     @Override

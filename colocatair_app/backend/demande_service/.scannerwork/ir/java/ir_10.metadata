@@ -1,1 +1,5 @@
-ma.emsi.demande_service.dao.IDao#<init>()V
+ma.emsi.demande_service.DemandeServiceApplicationTests#testOfferGettersAndSetters()V
+ma.emsi.demande_service.model.Offer#instance-init#
+java.util.Date#<init>()V
+ma.emsi.demande_service.model.Offer#<init>()V
+java.util.Date#instance-init#

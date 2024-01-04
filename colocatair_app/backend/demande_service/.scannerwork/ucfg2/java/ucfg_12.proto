@@ -1,0 +1,21 @@
+
+Wma.emsi.demande_service.controller.DemandeController#chercherDemandes()Ljava/util/List;Á
+¶/C:/Users/casper/Documents/emsi5/essabar/offreserviceApp/colocatair_app/colocatair_app/backend/demande_service/src/main/java/ma/emsi/demande_service/controller/DemandeController.java ()"1*¶
+1 (³
+°
+ (4
+%0.ma.emsi.demande_service.service.DemandeService"__id*h
+
+__unknown_file (L*J6
+4ma.emsi.demande_service.controller.DemandeController"
+demandeServiceÌÉ
+ ('
+%1java.util.List"Hma.emsi.demande_service.service.DemandeService#findAll()Ljava/util/List;*R
+
+__unknown_file (6
+4
+%0.ma.emsi.demande_service.service.DemandeService2	findAll()""
+ ((
+
+%1java.util.ListB86
+4ma.emsi.demande_service.controller.DemandeControllerH

@@ -1,1 +1,1 @@
-ma.emsi.demande_service.model.Demande#<init>()V
+ma.emsi.demande_service.service.DemandeService#<init>(Lma/emsi/demande_service/service/UserService;Lma/emsi/demande_service/repository/DemandeRepository;Lma/emsi/demande_service/service/OfferService;)V

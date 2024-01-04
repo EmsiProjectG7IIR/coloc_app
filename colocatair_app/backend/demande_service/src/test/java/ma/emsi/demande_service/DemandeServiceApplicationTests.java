@@ -25,6 +25,98 @@ class DemandeServiceApplicationTests {
 	@Mock
 	private DemandeRepository demandeRepository;
 
+
+
+	@Test
+	public void testUserGettersAndSetters() {
+		// Create a User object
+		User user = new User();
+
+		// Set values using setters
+		user.setId(1L);
+
+		user.setNom("John");
+		user.setPrenom("Doe");
+		user.setEmail("john.doe@example.com");
+		user.setDateNaissance(new Date());
+
+		// Test getters
+		assertEquals(1L, user.getId());
+
+		assertEquals("John", user.getNom());
+		assertEquals("Doe", user.getPrenom());
+		assertEquals("john.doe@example.com", user.getEmail());
+		assertEquals(new Date(), user.getDateNaissance());
+	}
+
+	@Test
+	public void testOfferGettersAndSetters() {
+		// Create an Offer object
+		Offer offer = new Offer();
+
+		// Set values using setters
+		offer.setId(1L);
+		offer.setIdCreateur(101L);
+		// Assuming you have a User object for user
+		// User user = new User();
+		// offer.setUser(user);
+		offer.setTitre("Job Offer");
+		offer.setDateCreation(new Date());
+		offer.setDateDebut(new Date());
+		offer.setDateFin(new Date());
+		offer.setDescription("Job Description");
+		offer.setAdresse("Company Address");
+		offer.setMontant(5000.0);
+		offer.setStatus(true);
+		offer.setPhoto("offer.jpg");
+
+		// Test getters
+		assertEquals(1L, offer.getId());
+		assertEquals(101L, offer.getIdCreateur());
+		// Uncomment and adjust accordingly if you have a User object
+		// assertEquals(user, offer.getUser());
+		assertEquals("Job Offer", offer.getTitre());
+		assertEquals(new Date(), offer.getDateCreation());
+		assertEquals(new Date(), offer.getDateDebut());
+		assertEquals(new Date(), offer.getDateFin());
+		assertEquals("Job Description", offer.getDescription());
+		assertEquals("Company Address", offer.getAdresse());
+		assertEquals(5000.0, offer.getMontant());
+		assertEquals(true, offer.isStatus());
+		assertEquals("offer.jpg", offer.getPhoto());
+	}
+	@Test
+	public void testGettersAndSetters() {
+		// Create a Demande object
+		Demande demande = new Demande();
+
+		// Set values using setters
+		demande.setId(1L);
+		demande.setDemandeurId(101L);
+		// Assuming you have a User object for demandeur
+		// User demandeur = new User();
+		// demande.setDemandeur(demandeur);
+		demande.setOfferId(201L);
+		// Assuming you have an Offer object for offer
+		// Offer offer = new Offer();
+		// demande.setOffer(offer);
+		demande.setStatus("Pending");
+		demande.setDateCreation(new Date());
+
+		// Test getters
+		assertEquals(1L, demande.getId());
+		assertEquals(101L, demande.getDemandeurId());
+		// Uncomment and adjust accordingly if you have a User object
+		// assertEquals(demandeur, demande.getDemandeur());
+		assertEquals(201L, demande.getOfferId());
+		// Uncomment and adjust accordingly if you have an Offer object
+		// assertEquals(offer, demande.getOffer());
+		assertEquals("Pending", demande.getStatus());
+		assertEquals(new Date(), demande.getDateCreation());
+
+		// Optionally, you can test additional assertions based on your specific use case
+	}
+
 	@InjectMocks
 	private DemandeService demandeService;
 

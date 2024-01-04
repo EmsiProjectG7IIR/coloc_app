@@ -20,28 +20,20 @@ public class OfferService implements IDao<Offer> {
 
     @Override
     public Offer save(Offer offer) {
-        //      Optional<User> user = userService.userById(nouvelleOffre.getUser().getId());
-//        if (user.isEmpty()) {
-//            throw new RuntimeException("Category not found.");
-//        }
-        System.out.println("hhhhhhhhhhhhh "+ offer.getId_createur());
-        User user = userService.userById(offer.getId_createur());
+
+        User user = userService.userById(offer.getIdCreateur());
 
         if (user == null){
-            System.out.println("User not found!!");
             return null;
         }else{
-            System.out.println("test : "+user);
             offer.setUser(user);
-            offer.setId_createur(user.getId());
+            offer.setIdCreateur(user.getId());
             return offerRepository.save(offer);
         }
     }
 
-    @Override
-    public void update(Offer o) {
 
-    }
+
 
     @Override
     public void delete(Offer offre) {
