@@ -1,0 +1,7 @@
+organization=apprommy
+projectKey=apprommy_userms
+serverUrl=https://sonarcloud.io
+serverVersion=8.0.0.51948
+dashboardUrl=https://sonarcloud.io/dashboard?id=apprommy_userms
+ceTaskId=AYzVBqrNx0vaLQAqcMRB
+ceTaskUrl=https://sonarcloud.io/api/ce/task?id=AYzVBqrNx0vaLQAqcMRB

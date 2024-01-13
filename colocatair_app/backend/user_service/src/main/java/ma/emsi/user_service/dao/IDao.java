@@ -1,6 +1,6 @@
 package ma.emsi.user_service.dao;
 
-import ma.emsi.user_service.model.User;
+
 
 import java.util.List;
 import java.util.Optional;

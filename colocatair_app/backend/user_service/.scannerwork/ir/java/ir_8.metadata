@@ -1,0 +1,6 @@
+ma.emsi.user_service.UserServiceApplicationTests#testChercherClients()V
+ma.emsi.user_service.model.User#instance-init#
+ma.emsi.user_service.model.User#<init>()V
+java.util.Arrays#asList([Ljava/lang/Object;)Ljava/util/List;
+==
+findAll ma.emsi.user_service.service.UserService#findAll()Ljava/util/List;

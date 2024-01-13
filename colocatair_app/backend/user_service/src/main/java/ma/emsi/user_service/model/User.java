@@ -1,14 +1,15 @@
 package ma.emsi.user_service.model;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import java.util.Date;
 
 @Entity
 @Data
+@Getter
+@Setter
+
 @AllArgsConstructor
 @NoArgsConstructor
 @Table(name = "\"user\"")
@@ -24,4 +25,16 @@ public class User {
     private String email;
     @Column(name = "date_naissance")
     private Date dateNaissance;
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "id=" + id +
+                ", uId='" + uId + '\'' +
+                ", nom='" + nom + '\'' +
+                ", prenom='" + prenom + '\'' +
+                ", email='" + email + '\'' +
+                ", dateNaissance=" + dateNaissance +
+                '}';
+    }
 }

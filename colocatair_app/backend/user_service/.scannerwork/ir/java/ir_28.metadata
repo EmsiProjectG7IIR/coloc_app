@@ -1,1 +1,1 @@
-ma.emsi.user_service.service.UserService#findAll()Ljava/util/List;
+ma.emsi.user_service.model.User#toString()Ljava/lang/String;

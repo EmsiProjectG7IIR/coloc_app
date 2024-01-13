@@ -11,6 +11,7 @@
         <module name="user_service" />
         <module name="offre_service" />
         <module name="demande_service" />
+        <module name="gateway_service" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>

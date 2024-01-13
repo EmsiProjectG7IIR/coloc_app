@@ -1,0 +1,21 @@
+
+Pma.emsi.user_service.controller.UserController#chercherClients()Ljava/util/List;¸
+­/C:/Users/casper/Documents/emsi5/essabar/offreserviceApp/colocatair_app/colocatair_app/backend/user_service/src/main/java/ma/emsi/user_service/controller/UserController.java (%"1*›
+1 (¤
+¡
+ (.
+%0(ma.emsi.user_service.service.UserService"__id*_
+
+__unknown_file (C*A0
+.ma.emsi.user_service.controller.UserController"
+userServiceÀ½
+ ($
+%1java.util.List"Bma.emsi.user_service.service.UserService#findAll()Ljava/util/List;*L
+
+__unknown_file (0
+.
+%0(ma.emsi.user_service.service.UserService2	findAll()""
+ (%
+
+%1java.util.ListB20
+.ma.emsi.user_service.controller.UserControllerH

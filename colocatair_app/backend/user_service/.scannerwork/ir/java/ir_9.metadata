@@ -1,0 +1,6 @@
+ma.emsi.user_service.UserServiceApplicationTests#testChercherUnClients()V
+ma.emsi.user_service.model.User#instance-init#
+ma.emsi.user_service.model.User#<init>()V
+java.util.Optional#of(Ljava/lang/Object;)Ljava/util/Optional;
+==
+findById ma.emsi.user_service.service.UserService#findById(Ljava/lang/Long;)Ljava/util/Optional;

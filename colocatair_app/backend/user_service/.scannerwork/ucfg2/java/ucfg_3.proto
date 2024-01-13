@@ -1,0 +1,62 @@
+
+}ma.emsi.user_service.controller.UserController#createUser(Lma/emsi/user_service/model/User;)Lma/emsi/user_service/model/User;∏
+≠/C:/Users/casper/Documents/emsi5/essabar/offreserviceApp/colocatair_app/colocatair_app/backend/user_service/src/main/java/ma/emsi/user_service/controller/UserController.java ("startingBlock*Ÿ
+startingBlock (2ì
+ê
+ (
+%2"
+__annotate*+
+
+__unknown_file (
+PostMapping*E
+
+__unknown_file ()
+'
+userma.emsi.user_service.model.Userì
+ê
+ ('
+%3"
+__annotate*+
+
+__unknown_file (
+RequestBody*E
+
+__unknown_file ()
+'
+userma.emsi.user_service.model.Userå
+â
+- (1'
+userma.emsi.user_service.model.User"__annotation*"
+
+__unknown_file (
+
+%2*"
+
+__unknown_file (
+
+%3*
+1*—
+1 (§
+°
+ (.
+%0(ma.emsi.user_service.service.UserService"__id*_
+
+__unknown_file (C*A0
+.ma.emsi.user_service.controller.UserController"
+userServiceÂ‚
+ (%%
+%1ma.emsi.user_service.model.User"qma.emsi.user_service.service.UserService#save(Lma/emsi/user_service/model/User;)Lma/emsi/user_service/model/User;*L
+
+__unknown_file (0
+.
+%0(ma.emsi.user_service.service.UserService*E
+
+__unknown_file ()
+'
+userma.emsi.user_service.model.User2'save(Lma/emsi/user_service/model/User;)"3
+ (&'
+%
+%1ma.emsi.user_service.model.User:3
+ (1'
+userma.emsi.user_service.model.UserB20
+.ma.emsi.user_service.controller.UserControllerH
