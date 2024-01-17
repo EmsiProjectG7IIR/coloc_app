@@ -8,9 +8,21 @@ services:
 
   mysqldb:
     image: mysql:latest
+    container_name: mysqldb
     ports:
-      - 3306:3306
+      - "3306:3306"
+    restart: unless-stopped
+    environment:
+      - MYSQL_ALLOW_EMPTY_PASSWORD=true
 
+  # phpmyadmin:
+  #   image: phpmyadmin/phpmyadmin
+  #   environment:
+  #     PMA_HOST: mysqldb
+  #     PMA_PORT: 3306
+  #     MYSQL_ROOT_PASSWORD: root
+  #   ports:
+  #     - "8081:80"
 
   demande-service:
     build:
@@ -19,20 +31,12 @@ services:
       - "8082:8082"
     depends_on:
       - eureka_server
-      - mysqldb_demande
+      - mysqldb
     environment:
-      DATABASE_URL: jdbc:mysql://mysqldb:3306/demande_db
-      eureka.client.serviceUrl.defaultZone: http://eureka-server:8761/eureka
-
-#-------offer-----#
-  mysqldb_offer:
-    container_name: mysqldb_user
-    image: mysql
-    ports:
-      - "3306:3306"
-    environment:
-      MYSQL_DATABASE: offer_db
-      MYSQL_ROOT_PASSWORD:
+      - EUREKA_CLIENT_SERVICEURL_DEFAULTZONE=http://eureka_server:8761/eureka/
+      - SPRING_DATASOURCE_URL=jdbc:mysql://mysqldb:3306/demande_db?serverTimezone=UTC
+      - SPRING_DATASOURCE_USERNAME=root
+      - SPRING_DATASOURCE_PASSWORD=
 
   offre-service:
     build:
@@ -40,31 +44,26 @@ services:
     ports:
       - "8087:8087"
     depends_on:
-      - mysqldb_offer
+      - mysqldb
       - eureka_server
     environment:
-      DATABASE_URL: jdbc:mysql://mysqldb_user:3306/offer_db
-      eureka.client.serviceUrl.defaultZone: http://eureka-server:8761/eureka
+      - EUREKA_CLIENT_SERVICEURL_DEFAULTZONE=http://eureka_server:8761/eureka/
+      - SPRING_DATASOURCE_URL=jdbc:mysql://mysqldb:3306/offer_db?serverTimezone=UTC
+      - SPRING_DATASOURCE_USERNAME=root
+      - SPRING_DATASOURCE_PASSWORD=
 
-
-#----User---#
-  mysqldb_user:
-    container_name: mysqldb_user
-    image: mysql
-    ports:
-      - "3306:3306"
-    environment:
-      MYSQL_DATABASE: user_db
-      MYSQL_ROOT_PASSWORD:
   user_service:
     build:
       context: ./user_service
     ports:
       - "8088:8088"
     depends_on:
+      - mysqldb
       - eureka_server
-      - mysqldb_user
     environment:
-      DATABASE_URL: jdbc:mysql://mysqldb_user:3306/user_db
-      eureka.client.serviceUrl.defaultZone: http://eureka-server:8761/eureka
+      - EUREKA_CLIENT_SERVICEURL_DEFAULTZONE=http://eureka_server:8761/eureka/
+      - SPRING_DATASOURCE_URL=jdbc:mysql://mysqldb:3306/user_db?serverTimezone=UTC
+      - SPRING_DATASOURCE_USERNAME=root
+      - SPRING_DATASOURCE_PASSWORD=
+      - SPRING_JPA_HIBERNATE_DIALECT=org.hibernate.dialect.MySQLDialect
 
