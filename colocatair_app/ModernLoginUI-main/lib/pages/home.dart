@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:modernlogintute/components/loading_indicator.dart';
 import 'package:modernlogintute/model/offer_model.dart';
-import 'package:modernlogintute/model/offre_list_model.dart';
 import 'package:modernlogintute/service/offer_service.dart'; // Import your OfferModel
 
 class Home extends StatelessWidget {
@@ -22,8 +22,9 @@ class CardCarousel extends StatefulWidget {
 }
 
 class _CardCarouselState extends State<CardCarousel> {
-  late List<OfferListModel> offers;
+  List<OfferModel> offers = [];
   int currentIndex = 0;
+  bool _isLoading = false;
 
   @override
   void initState() {
@@ -32,9 +33,13 @@ class _CardCarouselState extends State<CardCarousel> {
   }
 
   Future<void> fetchOffers() async {
+    setState(() {
+      _isLoading = true;
+    });
     final data = await OfferService.getData();
     setState(() {
-      offers = data.cast<OfferListModel>();
+      offers = data.cast<OfferModel>();
+      _isLoading = false;
     });
   }
 
@@ -66,67 +71,73 @@ class _CardCarouselState extends State<CardCarousel> {
       );
     }
 
-    return Column(
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: [
-        SizedBox(
-          height: 500.0,
-          child: Card(
-            margin: const EdgeInsets.all(16.0),
-            color: Colors.lightBlue[100],
-            child: Column(
-              children: [
-                ListTile(
-                  title: Text(offers[currentIndex].titre ?? ''),
-                  subtitle: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
+    return _isLoading
+        ? const LoadingIndicatorWidget()
+        : Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              SizedBox(
+                height: 500.0,
+                child: Card(
+                  margin: const EdgeInsets.all(16.0),
+                  color: Colors.lightBlue[100],
+                  child: Column(
                     children: [
-                      Text('Description: ${offers[currentIndex].description ?? ''}'),
-                      Text('Start Date: ${offers[currentIndex].dateDebut ?? ''}'),
-                      Text('End Date: ${offers[currentIndex].dateFin ?? ''}'),
-                      Text('Amount: ${offers[currentIndex].montant ?? ''}'),
+                      ListTile(
+                        title: Text(offers[currentIndex].titre ?? ''),
+                        subtitle: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                                'Description: ${offers[currentIndex].description ?? ''}'),
+                            Text(
+                                'Start Date: ${offers[currentIndex].dateDebut ?? ''}'),
+                            Text(
+                                'End Date: ${offers[currentIndex].dateFin ?? ''}'),
+                            Text(
+                                'Amount: ${offers[currentIndex].montant ?? ''}'),
+                          ],
+                        ),
+                      ),
+                      ButtonBar(
+                        alignment: MainAxisAlignment.center,
+                        children: [
+                          ElevatedButton(
+                            onPressed: _handleAccept,
+                            child: const Text('Accept'),
+                          ),
+                          ElevatedButton(
+                            onPressed: _handleRefuse,
+                            child: const Text('Refuse'),
+                          ),
+                        ],
+                      ),
                     ],
                   ),
                 ),
-                ButtonBar(
-                  alignment: MainAxisAlignment.center,
-                  children: [
-                    ElevatedButton(
-                      onPressed: _handleAccept,
-                      child: const Text('Accept'),
-                    ),
-                    ElevatedButton(
-                      onPressed: _handleRefuse,
-                      child: const Text('Refuse'),
-                    ),
-                  ],
-                ),
-              ],
-            ),
-          ),
-        ),
-        const SizedBox(height: 16.0),
-        Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            ElevatedButton(
-              onPressed: _moveToPreviousCard,
-              style: ElevatedButton.styleFrom(
-                backgroundColor: Colors.orange,
               ),
-              child: const Text('Previous'),
-            ),
-            const SizedBox(width: 16.0),
-            ElevatedButton(
-              onPressed: _moveToNextCard,
-              style: ElevatedButton.styleFrom(
-                backgroundColor: Colors.orange,
+              const SizedBox(height: 16.0),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  ElevatedButton(
+                    onPressed: _moveToPreviousCard,
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: Colors.orange,
+                    ),
+                    child: const Text('Previous'),
+                  ),
+                  const SizedBox(width: 16.0),
+                  ElevatedButton(
+                    onPressed: _moveToNextCard,
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: Colors.orange,
+                    ),
+                    child: const Text('Next'),
+                  ),
+                ],
               ),
-              child: const Text('Next'),
-            ),
-          ],
-        ),
-      ],
-    );
+            ],
+          );
   }
 }

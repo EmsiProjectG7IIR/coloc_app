@@ -4,9 +4,6 @@ import 'package:flutter_dialog_helper/flutter_dialog_helper.dart';
 import 'package:modernlogintute/components/my_button.dart';
 import 'package:modernlogintute/components/my_textfield.dart';
 import 'package:modernlogintute/components/square_tile.dart';
-import 'package:modernlogintute/model/user_model.dart';
-import 'package:modernlogintute/pages/toast_message.dart';
-import 'package:modernlogintute/service/auth_service.dart';
 
 class RegisterPage extends StatefulWidget {
   final Function()? onTap;
@@ -17,15 +14,14 @@ class RegisterPage extends StatefulWidget {
 }
 
 class _RegisterPageState extends State<RegisterPage> {
-  final TextEditingController _emailController = TextEditingController();
-  final TextEditingController _passwordController = TextEditingController();
-  final TextEditingController _confirmPasswordController =
-      TextEditingController();
-  final TextEditingController _firstNameController = TextEditingController();
-  final TextEditingController _lastNameController = TextEditingController();
+  // text editing controllers
+  final emailController = TextEditingController();
+  final passwordController = TextEditingController();
+  final ConfirmPasswordController = TextEditingController();
 
   // sign user up method
   void signUserUp() async {
+    // Show loading circle
     showDialog(
       context: context,
       builder: (context) {
@@ -36,30 +32,16 @@ class _RegisterPageState extends State<RegisterPage> {
     );
     // try sign in
     try {
-      if (_passwordController.text == _confirmPasswordController.text) {
-        final res = await FirebaseAuth.instance.createUserWithEmailAndPassword(
-          email: _emailController.text,
-          password: _passwordController.text,
+      if (passwordController.text == ConfirmPasswordController.text) {
+        await FirebaseAuth.instance.createUserWithEmailAndPassword(
+          email: emailController.text,
+          password: passwordController.text,
         );
-        String? uid = res.user?.uid;
-        final userModel = UserModel(
-          email: _emailController.text,
-          prenom: _lastNameController.text,
-          nom: _firstNameController.text,
-          dateNaissance: "1990-01-01",
-          uid: uid,
-        );
-        try {
-          await AuthService.signup(userModel);
-          ToastMsg.showToastMsg("Registed");
-          Navigator.pop(context);
-          // Get.offAllNamed('/HomePage');
-        } catch (e) {
-          ToastMsg.showToastMsg("Smoothing went wrong");
-        }
       } else {
-        showErrorMessage(context, "Passwords don'\tmatch!!!");
+        showErrorMessage(context, "Passwords don'\t match!!!");
       }
+      // POP the circle
+      Navigator.pop(context);
     } on FirebaseAuthException catch (e) {
       // POP the circle
       Navigator.pop(context);
@@ -100,8 +82,14 @@ class _RegisterPageState extends State<RegisterPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.grey[300],
-      body: SafeArea(
+      backgroundColor: Colors.white,
+      body: Container(
+        decoration:const BoxDecoration(
+          image: DecorationImage(
+            image: AssetImage('lib/images/gradient2.png'), 
+            fit: BoxFit.cover,
+          ),
+        ),
         child: Center(
           child: SingleChildScrollView(
             child: Column(
@@ -109,64 +97,62 @@ class _RegisterPageState extends State<RegisterPage> {
               children: [
                 const SizedBox(height: 50),
 
-                // logo
-                const Icon(
-                  Icons.lock,
-                  size: 50,
-                ),
-
-                const SizedBox(height: 50),
-
                 // welcome back, you've been missed!
-                Text(
-                  'Let\'s create an account for you!',
-                  style: TextStyle(
-                    color: Colors.grey[700],
-                    fontSize: 16,
+                const Padding(
+                  padding:  EdgeInsets.only(right: 300.0),
+                  child:  Text(
+                    'Create ',
+                    style: TextStyle(
+                      color: Colors.black,
+                      fontWeight: FontWeight.bold,
+                      fontSize: 30,
+                    ),
                   ),
+                  
                 ),
 
-                const SizedBox(height: 25),
-                MyTextField(
-                  controller: _lastNameController,
-                  hintText: 'Nom',
-                  obscureText: false,
+                
+                 const Padding(
+                  padding:  EdgeInsets.only(right: 300.0),
+                  child:  Text(
+                    'Account :)',
+                    style: TextStyle(
+                      color: Colors.black,
+                      fontWeight: FontWeight.bold,
+                      fontSize: 30,
+                    ),
+                  ),
+                  
                 ),
-                const SizedBox(height: 10),
 
-                MyTextField(
-                  controller: _firstNameController,
-                  hintText: 'Prenom',
-                  obscureText: false,
-                ),
-                const SizedBox(height: 10),
+                const SizedBox(height: 30),
 
                 // email textfield
                 MyTextField(
-                  controller: _emailController,
-                  hintText: 'Email',
+                  controller: emailController,
+                  hintText: 'Enter Email',
                   obscureText: false,
                 ),
 
-                const SizedBox(height: 10),
+                const SizedBox(height: 20),
 
                 // password textfield
                 MyTextField(
-                  controller: _passwordController,
-                  hintText: 'Password',
+                  controller: passwordController,
+                  hintText: 'Enter Password',
                   obscureText: true,
                 ),
 
-                const SizedBox(height: 10),
+                const SizedBox(height: 20),
 
                 // confirm password textfield
                 MyTextField(
-                  controller: _confirmPasswordController,
-                  hintText: 'Confirm Password',
+                  controller: ConfirmPasswordController,
+                  hintText: 'Re-Enter Password',
                   obscureText: true,
                 ),
 
-                const SizedBox(height: 10),
+                const SizedBox(height: 20),
 
                 const SizedBox(height: 25),
 
@@ -178,59 +164,15 @@ class _RegisterPageState extends State<RegisterPage> {
 
                 const SizedBox(height: 50),
 
-                // or continue with
-                Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 25.0),
-                  child: Row(
-                    children: [
-                      Expanded(
-                        child: Divider(
-                          thickness: 0.5,
-                          color: Colors.grey[400],
-                        ),
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 10.0),
-                        child: Text(
-                          'Or continue with',
-                          style: TextStyle(color: Colors.grey[700]),
-                        ),
-                      ),
-                      Expanded(
-                        child: Divider(
-                          thickness: 0.5,
-                          color: Colors.grey[400],
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-
                 const SizedBox(height: 50),
-
-                // google + apple sign in buttons
-                const Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    // google button
-                    SquareTile(imagePath: 'lib/images/google.png'),
-
-                    SizedBox(width: 25),
-
-                    // apple button
-                    SquareTile(imagePath: 'lib/images/apple.png')
-                  ],
-                ),
-
-                const SizedBox(height: 30),
 
                 // not a member? register now
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Text(
+                    const Text(
                       'Already Have An Acount?',
-                      style: TextStyle(color: Colors.grey[700]),
+                      style: TextStyle(color: Colors.black, fontWeight: FontWeight.bold),
                     ),
                     const SizedBox(width: 4),
                     GestureDetector(
@@ -243,7 +185,6 @@ class _RegisterPageState extends State<RegisterPage> {
                         ),
                       ),
                     ),
-                    const SizedBox(height: 50),
                   ],
                 )
               ],

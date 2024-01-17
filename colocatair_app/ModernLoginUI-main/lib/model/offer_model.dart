@@ -7,8 +7,8 @@ class OfferModel {
   DateTime? dateFin;
   String? description;
   String? adresse;
-  int? montant;
-  bool? status;
+  double? montant;
+  String? status;
   String? photo;
 
   OfferModel(
@@ -39,21 +39,20 @@ class OfferModel {
   }
 
   Map<String, dynamic> toJson() {
-  final Map<String, dynamic> data = <String, dynamic>{};
-  data['id'] = id;
-  data['id_createur'] = idCreateur;
-  data['titre'] = titre;
-  data['dateCreation'] = dateCreation?.toIso8601String(); // Convert DateTime to string
-  data['dateDebut'] = dateDebut?.toIso8601String(); // Convert DateTime to string
-  data['dateFin'] = dateFin?.toIso8601String(); // Convert DateTime to string
-  data['description'] = description;
-  data['adresse'] = adresse;
-  data['montant'] = montant;
-  data['status'] = status;
-  data['photo'] = photo;
-  return data;
-}
-
-
-  
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['id'] = id;
+    data['id_createur'] = idCreateur;
+    data['titre'] = titre;
+    data['dateCreation'] =
+        dateCreation?.toIso8601String(); // Convert DateTime to string
+    data['dateDebut'] =
+        dateDebut?.toIso8601String(); // Convert DateTime to string
+    data['dateFin'] = dateFin?.toIso8601String(); // Convert DateTime to string
+    data['description'] = description;
+    data['adresse'] = adresse;
+    data['montant'] = montant;
+    data['status'] = status;
+    data['photo'] = photo;
+    return data;
+  }
 }

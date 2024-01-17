@@ -1,4 +1,3 @@
-import 'dart:developer';
 
 class UserModel {
   int? id;
@@ -26,7 +25,6 @@ class UserModel {
   }
 
   Map<String, dynamic> toJson() {
-    log("ffff");
     final Map<String, dynamic> data = <String, dynamic>{};
     data['nom'] = nom;
     data['prenom'] = prenom;

@@ -1,26 +1,23 @@
 import 'dart:convert';
 import 'dart:developer';
-import 'dart:html';
-import 'package:flutter/material.dart';
 import 'package:modernlogintute/model/offer_model.dart';
 import 'package:modernlogintute/config.dart';
 import 'package:http/http.dart' as http;
-import 'package:modernlogintute/model/offre_list_model.dart';
 
 class OfferService {
-  static const _viewUrl = "$apiUrlOffer/offer/all";
-  static const _saveUrl = "$apiUrlOffer/offer/save"; 
+  static const _viewUrl = "$apiUrlOffer/all";
+  static const _saveUrl = "$apiUrlOffer/save";
 
-  static List<OfferListModel> dataFromJson(String jsonString) {
+  static List<OfferModel> dataFromJson(String jsonString) {
     final data = json.decode(jsonString);
-    return List<OfferListModel>.from(data.map((item) => OfferListModel.fromJson(item)));
+    return List<OfferModel>.from(data.map((item) => OfferModel.fromJson(item)));
   }
 
-  static Future<List<OfferListModel>> getData() async {
+  static Future<List<OfferModel>> getData() async {
     try {
       final response = await http.get(Uri.parse(_viewUrl));
       if (response.statusCode == 200) {
-        List<OfferListModel> list = dataFromJson(response.body);
+        List<OfferModel> list = dataFromJson(response.body);
         log("message : ${response.body}");
         return list;
       } else {
@@ -34,6 +31,7 @@ class OfferService {
   }
 
   static Future<void> saveOffer(OfferModel offer) async {
+    log("message mmm ${offer.toJson()}");
     try {
       final response = await http.post(
         Uri.parse(_saveUrl),

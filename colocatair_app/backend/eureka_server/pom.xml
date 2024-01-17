@@ -51,30 +51,26 @@
 	</dependencyManagement>
 
 	<build>
-		<resources>
-			<resource>
-				<directory>src/main/resources</directory>
-				<filtering>true</filtering>
-				<includes>
-					<include>.env</include>
-				</includes>
-			</resource>
-		</resources>
 		<plugins>
-
-
-
 			<plugin>
 				<groupId>org.sonarsource.scanner.maven</groupId>
 				<artifactId>sonar-maven-plugin</artifactId>
 				<version>3.9.0.2155</version> <!-- Replace with the latest version -->
-
 			</plugin>
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
 			</plugin>
 		</plugins>
+<!--		<resources>-->
+<!--			<resource>-->
+<!--				<directory>src/main/resources</directory>-->
+<!--				<filtering>true</filtering>-->
+<!--				<includes>-->
+<!--					<include>.env</include>-->
+<!--				</includes>-->
+<!--			</resource>-->
+<!--		</resources>-->
 	</build>
 
 </project>
