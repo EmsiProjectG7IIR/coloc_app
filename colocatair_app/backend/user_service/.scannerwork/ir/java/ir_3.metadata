@@ -1,4 +1,0 @@
-ma.emsi.user_service.controller.UserController#chercherUnClients(Ljava/lang/Long;)Lma/emsi/user_service/model/User;
-java.util.Optional#orElseThrow(Ljava/util/function/Supplier;)Ljava/lang/Object;
-==
-findById ma.emsi.user_service.service.UserService#findById(Ljava/lang/Long;)Ljava/util/Optional;

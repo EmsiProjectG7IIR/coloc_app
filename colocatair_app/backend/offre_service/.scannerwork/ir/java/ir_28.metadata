@@ -1,3 +1,0 @@
-ma.emsi.offre_service.controller.OfferController#findAll()Ljava/util/List;
-==
-findAll ma.emsi.offre_service.service.OfferService#findAll()Ljava/util/List;

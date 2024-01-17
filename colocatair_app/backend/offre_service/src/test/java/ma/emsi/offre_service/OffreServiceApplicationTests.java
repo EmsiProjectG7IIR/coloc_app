@@ -6,6 +6,7 @@ import ma.emsi.offre_service.entites.User;
 import ma.emsi.offre_service.repository.OfferRepository;
 import ma.emsi.offre_service.service.OfferService;
 import ma.emsi.offre_service.service.UserService;
+import org.junit.Assert;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
@@ -14,6 +15,8 @@ import org.mockito.MockitoAnnotations;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
+import java.io.ByteArrayOutputStream;
+import java.io.PrintStream;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -29,6 +32,7 @@ class OffreServiceApplicationTests {
     OfferService offreService;
     @Autowired
     OfferController offerController;
+
 
     private static final String OFFERADDRESS = "Offer Address";
     private static final String TESTOFFER = "Test Offer";

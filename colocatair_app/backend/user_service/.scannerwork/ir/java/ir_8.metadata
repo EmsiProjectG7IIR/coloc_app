@@ -1,7 +1,0 @@
-ma.emsi.user_service.UserServiceApplicationTests#shouldSaveUser()V
-null
-ma.emsi.user_service.model.User#instance-init#
-java.util.Date#<init>()V
-java.util.Date#instance-init#
-==
-save ma.emsi.user_service.service.UserService#save(Lma/emsi/user_service/model/User;)Lma/emsi/user_service/model/User;

@@ -17,14 +17,17 @@ public class Demande {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private Long id;
+    @SuppressWarnings("unused")
     private Long demandeurId;
     @Transient
     @ManyToOne
     private User demandeur;
+    @SuppressWarnings("unused")
     private Long offerId;
     @Transient
     @ManyToOne
     private Offer offer;
+    @SuppressWarnings("unused")
     private String status;
     @Column(name = "dateCreation")
     private Date dateCreation;

@@ -5,6 +5,7 @@ import ma.emsi.user_service.service.UserService;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("api/user")
@@ -23,13 +24,15 @@ public class UserController {
         return userService.findAll();
     }
     @GetMapping("/find/{id}")
-    public User chercherUnClients(@PathVariable Long id) throws Exception {
-        return userService.findById(id).orElseThrow(() -> new Exception("User inexistant"));
+    public Optional<User> chercherUnClients(@PathVariable long id) {
+        return userService.findById(id);
     }
 
     @PostMapping("/save")
     public User createUser(@RequestBody User user) {
         return userService.save(user);
     }
+
+
 
 }

@@ -1,3 +1,0 @@
-ma.emsi.demande_service.controller.DemandeController#chercherDemandes()Ljava/util/List;
-==
-findAll ma.emsi.demande_service.service.DemandeService#findAll()Ljava/util/List;

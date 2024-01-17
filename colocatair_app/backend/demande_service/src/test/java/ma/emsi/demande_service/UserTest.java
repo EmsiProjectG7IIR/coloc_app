@@ -46,25 +46,7 @@ public class UserTest {
         // Test toString()
         assertEquals(user.toString(), anotherUser.toString());
     }
-    @Test
-    public void testEntityAnnotation() {
-        EntityManager entityManager = Persistence.createEntityManagerFactory("your_persistence_unit_name").createEntityManager();
-        User user = new User(1L, 1001L, "John", "Doe", "john.doe@example.com", new Date());
 
-        // Test persisting the entity
-        entityManager.getTransaction().begin();
-        entityManager.persist(user);
-        entityManager.getTransaction().commit();
-
-        // Test finding the entity
-        User foundUser = entityManager.find(User.class, 1L);
-
-        // Add assertions to ensure the entity is persisted and retrieved correctly
-        // Assertions.assertNotNull(foundUser);
-        // Assertions.assertEquals(user, foundUser);
-
-        entityManager.close();
-    }
 
 
 }

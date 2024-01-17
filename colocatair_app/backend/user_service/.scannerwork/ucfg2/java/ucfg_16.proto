@@ -1,14 +1,0 @@
-
-Bma.emsi.user_service.service.UserService#findAll()Ljava/util/List;²
-§/C:/Users/casper/Documents/emsi5/essabar/offreserviceApp/colocatair_app/colocatair_app/backend/user_service/src/main/java/ma/emsi/user_service/service/UserService.java, ,("1*Ë
-1- -(§
-¤
-- -(4
-%0.ma.emsi.user_service.repository.UserRepository"__id*\
-
-__unknown_file (@*>*
-(ma.emsi.user_service.service.UserService"
-userRepository"
-- -((
-""B,*
-(ma.emsi.user_service.service.UserServiceH

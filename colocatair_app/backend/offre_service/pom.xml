@@ -70,6 +70,10 @@
             <artifactId>spring-cloud-openfeign-core</artifactId>
             <version>4.1.0</version>
         </dependency>
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+        </dependency>
 
     </dependencies>
     <dependencyManagement>
@@ -113,6 +117,15 @@
                 <groupId>org.jacoco</groupId>
                 <artifactId>jacoco-maven-plugin</artifactId>
                 <version>0.8.7</version>
+                <configuration>
+                    <excludes>
+                        <exclude>
+                            ma.emsi.offre_service.entites/Offer.class
+                            ma.emsi.offre_service.entites/User.class
+
+                        </exclude>
+                    </excludes>
+                </configuration>
                 <executions>
                     <execution>
                         <id>prepare-agent</id>

@@ -1,8 +1,0 @@
-ma.emsi.demande_service.UserTest#testDataAnnotation()V
-null
-ma.emsi.demande_service.model.User#instance-init#
-java.util.Date#<init>()V
-java.util.Date#instance-init#
-==
-hashCode java.lang.Object#hashCode()I
-toString java.lang.Object#toString()Ljava/lang/String;
