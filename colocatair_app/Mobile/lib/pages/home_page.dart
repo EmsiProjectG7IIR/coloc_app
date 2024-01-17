@@ -1,6 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:modernlogintute/pages/addpage.dart';
+import 'package:modernlogintute/pages/add_offer.dart';
 import 'package:modernlogintute/pages/demandpage.dart';
 import 'package:modernlogintute/pages/home.dart';
 import 'package:modernlogintute/pages/mailbox.dart';

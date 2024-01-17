@@ -20,20 +20,8 @@ public class OfferService implements IDao<Offer> {
 
     @Override
     public Offer save(Offer offer) {
-
-        User user = userService.userById(offer.getIdCreateur());
-
-        if (user == null){
-            return null;
-        }else{
-            offer.setUser(user);
-            offer.setIdCreateur(user.getId());
-            return offerRepository.save(offer);
-        }
+        return offerRepository.save(offer);
     }
-
-
-
 
     @Override
     public void delete(Offer offre) {

@@ -18,8 +18,8 @@ public class User {
     @Column(name = "id")
     private Long id;
     @SuppressWarnings("unused")
-    @Column(name = "u_id", unique = true, nullable = false)
-    private String uId;
+    @Column(name = "uid", unique = true, nullable = false)
+    private String uid;
     @SuppressWarnings("unused")
     private String nom;
     @SuppressWarnings("unused")

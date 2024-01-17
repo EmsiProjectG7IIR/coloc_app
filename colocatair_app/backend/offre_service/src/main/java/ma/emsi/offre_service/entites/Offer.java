@@ -14,18 +14,17 @@ public class Offer {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private Long idCreateur;
+    private String idCreateur;
     @Transient
     @ManyToOne
     private User user;
     private String titre;
-    private Date dateCreation;
     private Date dateDebut;
     private Date dateFin;
     private String description;
     private String adresse;
     private double montant;
-    private boolean status;
+    private String status;
     private String photo;
 
     @Override
@@ -35,7 +34,6 @@ public class Offer {
                 ", idCreateur=" + idCreateur +
                 ", user=" + user +
                 ", titre='" + titre + '\'' +
-                ", dateCreation=" + dateCreation +
                 ", dateDebut=" + dateDebut +
                 ", dateFin=" + dateFin +
                 ", description='" + description + '\'' +

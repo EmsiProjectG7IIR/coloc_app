@@ -20,12 +20,17 @@ public class UserController {
 
 
     @GetMapping("/all")
-    public List<User> chercherClients() {
+    public List<User> chercherUser() {
         return userService.findAll();
     }
     @GetMapping("/find/{id}")
-    public Optional<User> chercherUnClients(@PathVariable long id) {
+    public Optional<User> chercherUnUser(@PathVariable long id) {
         return userService.findById(id);
+    }
+
+    @GetMapping("/findByUid/{uid}")
+    public User chercherUnUser(@PathVariable String uid) {
+        return userService.findByUid(uid);
     }
 
     @PostMapping("/save")

@@ -36,9 +36,7 @@ class UserControllerTest {
         List<User> mockUsers = Arrays.asList(user1, user2);
         when(userService.findAll()).thenReturn(mockUsers);
 
-        List<User> result = userController.chercherClients();
-
-
+        List<User> result = userController.chercherUser();
 
         assertEquals(2, result.size());
         verify(userService, times(1)).findAll();
@@ -51,7 +49,7 @@ class UserControllerTest {
 
         when(userService.findById(userId)).thenReturn(Optional.of(mockUser));
 
-        Optional<User> result = userController.chercherUnClients(userId);
+        Optional<User> result = userController.chercherUnUser(userId);
 
         assertEquals(userId, result.get().getId());
         verify(userService, times(1)).findById(userId);

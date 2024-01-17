@@ -2,7 +2,6 @@ import 'dart:developer';
 
 import 'package:flutter/material.dart';
 import 'package:modernlogintute/model/offer_model.dart';
-import 'package:modernlogintute/model/offre_list_model.dart';
 import 'package:modernlogintute/pages/last_page.dart';
 import 'package:modernlogintute/service/offer_service.dart'; // Import your OfferModel
 
@@ -25,7 +24,7 @@ class CardCarousel extends StatefulWidget {
 }
 
 class _CardCarouselState extends State<CardCarousel> {
-  late List<OfferListModel> offers;
+  late List<OfferModel> offers;
   int currentIndex = 0;
 
   @override
@@ -37,7 +36,7 @@ class _CardCarouselState extends State<CardCarousel> {
   Future<void> fetchOffers() async {
     final data = await OfferService.getData();
     setState(() {
-      offers = data.cast<OfferListModel>();
+      offers = data.cast<OfferModel>();
     });
   }
 

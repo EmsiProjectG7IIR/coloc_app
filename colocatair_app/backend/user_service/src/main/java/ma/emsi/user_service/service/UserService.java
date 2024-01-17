@@ -32,6 +32,10 @@ public class UserService{
         return userRepository.findById(id);
     }
 
+    public User findByUid(String uid) {
+        return userRepository.findByUid(uid);
+    }
+
     public List<User> findAll() {
         return userRepository.findAll();
     }

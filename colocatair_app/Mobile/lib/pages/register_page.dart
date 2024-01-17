@@ -1,9 +1,14 @@
+import 'dart:developer';
+
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_dialog_helper/flutter_dialog_helper.dart';
 import 'package:modernlogintute/components/my_button.dart';
 import 'package:modernlogintute/components/my_textfield.dart';
 import 'package:modernlogintute/components/square_tile.dart';
+import 'package:modernlogintute/components/toast_message.dart';
+import 'package:modernlogintute/model/user_model.dart';
+import 'package:modernlogintute/service/auth_service.dart';
 
 class RegisterPage extends StatefulWidget {
   final Function()? onTap;
@@ -15,13 +20,14 @@ class RegisterPage extends StatefulWidget {
 
 class _RegisterPageState extends State<RegisterPage> {
   // text editing controllers
-  final emailController = TextEditingController();
-  final passwordController = TextEditingController();
-  final ConfirmPasswordController = TextEditingController();
+  final TextEditingController emailController = TextEditingController();
+  final TextEditingController passwordController = TextEditingController();
+  final TextEditingController confirmPasswordController =
+      TextEditingController();
+  final TextEditingController _firstNameController = TextEditingController();
+  final TextEditingController _lastNameController = TextEditingController();
 
-  // sign user up method
   void signUserUp() async {
-    // Show loading circle
     showDialog(
       context: context,
       builder: (context) {
@@ -32,16 +38,32 @@ class _RegisterPageState extends State<RegisterPage> {
     );
     // try sign in
     try {
-      if (passwordController.text == ConfirmPasswordController.text) {
-        await FirebaseAuth.instance.createUserWithEmailAndPassword(
+      if (passwordController.text == confirmPasswordController.text) {
+        final res = await FirebaseAuth.instance.createUserWithEmailAndPassword(
           email: emailController.text,
           password: passwordController.text,
         );
+        String? uid = res.user?.uid;
+
+        final userModel = UserModel(
+          email: emailController.text,
+          prenom: _lastNameController.text,
+          nom: _firstNameController.text,
+          dateNaissance: "1990-01-01",
+          uid: uid,
+        );
+        try {
+          await AuthService.signup(userModel);
+
+          ToastMsg.showToastMsg("Registed");
+          Navigator.pop(context);
+          // Get.offAllNamed('/HomePage');
+        } catch (e) {
+          ToastMsg.showToastMsg("Smoothing went wrong");
+        }
       } else {
-        showErrorMessage(context, "Passwords don'\t match!!!");
+        showErrorMessage(context, "Passwords don'\tmatch!!!");
       }
-      // POP the circle
-      Navigator.pop(context);
     } on FirebaseAuthException catch (e) {
       // POP the circle
       Navigator.pop(context);
@@ -84,9 +106,9 @@ class _RegisterPageState extends State<RegisterPage> {
     return Scaffold(
       backgroundColor: Colors.white,
       body: Container(
-        decoration:const BoxDecoration(
+        decoration: const BoxDecoration(
           image: DecorationImage(
-            image: AssetImage('lib/images/gradient2.png'), 
+            image: AssetImage('lib/images/gradient2.png'),
             fit: BoxFit.cover,
           ),
         ),
@@ -99,8 +121,8 @@ class _RegisterPageState extends State<RegisterPage> {
 
                 // welcome back, you've been missed!
                 const Padding(
-                  padding:  EdgeInsets.only(right: 300.0),
-                  child:  Text(
+                  padding: EdgeInsets.only(right: 240.0),
+                  child: Text(
                     'Create ',
                     style: TextStyle(
                       color: Colors.black,
@@ -108,13 +130,11 @@ class _RegisterPageState extends State<RegisterPage> {
                       fontSize: 30,
                     ),
                   ),
-                  
                 ),
 
-                
-                 const Padding(
-                  padding:  EdgeInsets.only(right: 300.0),
-                  child:  Text(
+                const Padding(
+                  padding: EdgeInsets.only(right: 200.0),
+                  child: Text(
                     'Account :)',
                     style: TextStyle(
                       color: Colors.black,
@@ -122,9 +142,24 @@ class _RegisterPageState extends State<RegisterPage> {
                       fontSize: 30,
                     ),
                   ),
-                  
                 ),
 
+                const SizedBox(height: 30),
+
+                // email textfield
+                MyTextField(
+                  controller: _firstNameController,
+                  hintText: 'First Name',
+                  obscureText: false,
+                ),
+                const SizedBox(height: 30),
+
+                // email textfield
+                MyTextField(
+                  controller: _lastNameController,
+                  hintText: 'Last Name',
+                  obscureText: false,
+                ),
                 const SizedBox(height: 30),
 
                 // email textfield
@@ -147,7 +182,7 @@ class _RegisterPageState extends State<RegisterPage> {
 
                 // confirm password textfield
                 MyTextField(
-                  controller: ConfirmPasswordController,
+                  controller: confirmPasswordController,
                   hintText: 'Re-Enter Password',
                   obscureText: true,
                 ),
@@ -172,7 +207,8 @@ class _RegisterPageState extends State<RegisterPage> {
                   children: [
                     const Text(
                       'Already Have An Acount?',
-                      style: TextStyle(color: Colors.black, fontWeight: FontWeight.bold),
+                      style: TextStyle(
+                          color: Colors.black, fontWeight: FontWeight.bold),
                     ),
                     const SizedBox(width: 4),
                     GestureDetector(

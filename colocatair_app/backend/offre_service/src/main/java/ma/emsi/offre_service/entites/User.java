@@ -11,7 +11,7 @@ import java.util.Date;
 @NoArgsConstructor
 public class User {
     private Long id;
-    private Long uId;
+    private String uid;
     private String nom;
     private String prenom;
     private String email;
@@ -23,7 +23,7 @@ public class User {
     public String toString() {
         return "User{" +
                 "id=" + id +
-                ", uId=" + uId +
+                ", uId=" + uid +
                 ", nom='" + nom + '\'' +
                 ", prenom='" + prenom + '\'' +
                 ", email='" + email + '\'' +
