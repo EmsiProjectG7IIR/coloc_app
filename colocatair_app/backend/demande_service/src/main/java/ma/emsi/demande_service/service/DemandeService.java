@@ -53,7 +53,7 @@ public class DemandeService implements IDao<Demande> {
 
     @Override
     public void update(Demande o) {
-        demandeRepository.update(o);
+        demandeRepository.save(o);
     }
 
     @Override

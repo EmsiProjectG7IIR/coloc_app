@@ -3,26 +3,32 @@ services:
   eureka_server:
     build:
       context: ./eureka_server
+    restart: always
     ports:
       - "8761:8761"
-
-  mysqldb:
+    networks:
+      - microservices-network
+  mysql:
     image: mysql:latest
-    container_name: mysqldb
+    container_name: mysql
     ports:
       - "3306:3306"
     restart: unless-stopped
     environment:
-      - MYSQL_ALLOW_EMPTY_PASSWORD=true
+      MYSQL_ROOT_PASSWORD: root
+    networks:
+      - microservices-network
 
-  # phpmyadmin:
-  #   image: phpmyadmin/phpmyadmin
-  #   environment:
-  #     PMA_HOST: mysqldb
-  #     PMA_PORT: 3306
-  #     MYSQL_ROOT_PASSWORD: root
-  #   ports:
-  #     - "8081:80"
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    environment:
+      PMA_HOST: mysql
+      PMA_PORT: 3306
+      MYSQL_ROOT_PASSWORD: root
+    ports:
+      - "8080:80"
+    networks:
+      - microservices-network
 
   demande-service:
     build:
@@ -30,13 +36,21 @@ services:
     ports:
       - "8082:8082"
     depends_on:
+      - mysql
       - eureka_server
-      - mysqldb
+    networks:
+      - microservices-network
     environment:
-      - EUREKA_CLIENT_SERVICEURL_DEFAULTZONE=http://eureka_server:8761/eureka/
-      - SPRING_DATASOURCE_URL=jdbc:mysql://mysqldb:3306/demande_db?serverTimezone=UTC
-      - SPRING_DATASOURCE_USERNAME=root
-      - SPRING_DATASOURCE_PASSWORD=
+      SPRING_CLOUD_EUREKA_HOST: eureka_server
+      SPRING_CLOUD_EUREKA_PORT: 8761
+      SPRING_DATASOURCE_URL: jdbc:mysql://mysql:3306/demande_db?createDatabaseIfNotExist=true
+      SPRING_DATASOURCE_USERNAME: root
+      SPRING_DATASOURCE_PASSWORD: root
+    healthcheck:
+      test: "/usr/bin/mysql --user=root --password=root --execute \"SHOW DATABASES;\""
+      interval: 5s
+      timeout: 2s
+      retries: 100
 
   offre-service:
     build:
@@ -44,13 +58,21 @@ services:
     ports:
       - "8087:8087"
     depends_on:
-      - mysqldb
+      - mysql
       - eureka_server
+    networks:
+      - microservices-network
     environment:
-      - EUREKA_CLIENT_SERVICEURL_DEFAULTZONE=http://eureka_server:8761/eureka/
-      - SPRING_DATASOURCE_URL=jdbc:mysql://mysqldb:3306/offer_db?serverTimezone=UTC
-      - SPRING_DATASOURCE_USERNAME=root
-      - SPRING_DATASOURCE_PASSWORD=
+      SPRING_CLOUD_EUREKA_HOST: eureka_server
+      SPRING_CLOUD_EUREKA_PORT: 8761
+      SPRING_DATASOURCE_URL: jdbc:mysql://mysql:3306/offer_db?createDatabaseIfNotExist=true
+      SPRING_DATASOURCE_USERNAME: root
+      SPRING_DATASOURCE_PASSWORD: root
+    healthcheck:
+      test: "/usr/bin/mysql --user=root --password=root --execute \"SHOW DATABASES;\""
+      interval: 5s
+      timeout: 2s
+      retries: 100
 
   user_service:
     build:
@@ -58,12 +80,22 @@ services:
     ports:
       - "8088:8088"
     depends_on:
-      - mysqldb
+      - mysql
       - eureka_server
+    networks:
+      - microservices-network
     environment:
-      - EUREKA_CLIENT_SERVICEURL_DEFAULTZONE=http://eureka_server:8761/eureka/
-      - SPRING_DATASOURCE_URL=jdbc:mysql://mysqldb:3306/user_db?serverTimezone=UTC
-      - SPRING_DATASOURCE_USERNAME=root
-      - SPRING_DATASOURCE_PASSWORD=
-      - SPRING_JPA_HIBERNATE_DIALECT=org.hibernate.dialect.MySQLDialect
+      SPRING_CLOUD_EUREKA_HOST: eureka_server
+      SPRING_CLOUD_EUREKA_PORT: 8761
+      SPRING_DATASOURCE_URL: jdbc:mysql://mysql:3306/user_db?createDatabaseIfNotExist=true
+      SPRING_DATASOURCE_USERNAME: root
+      SPRING_DATASOURCE_PASSWORD: root
+    healthcheck:
+      test: "/usr/bin/mysql --user=root --password=root --execute \"SHOW DATABASES;\""
+      interval: 5s
+      timeout: 2s
+      retries: 100
 
+networks:
+  microservices-network:
+    driver: bridge
