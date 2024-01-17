@@ -17,11 +17,17 @@ public class User {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private Long id;
+    @SuppressWarnings("unused")
     @Column(name = "u_id", unique = true, nullable = false)
-    private long uId;
+    private String uId;
+    @SuppressWarnings("unused")
     private String nom;
+    @SuppressWarnings("unused")
     private String prenom;
+
+    @SuppressWarnings("unused")
     private String email;
     @Column(name = "date_naissance")
     private Date dateNaissance;
+
 }

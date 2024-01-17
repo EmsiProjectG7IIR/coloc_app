@@ -1,3 +1,0 @@
-ma.emsi.offre_service.service.OfferService#findById(Ljava/lang/Long;)Ljava/util/Optional;
-==
-findById ma.emsi.offre_service.repository.OfferRepository#findById(Ljava/lang/Long;)Ljava/util/Optional;

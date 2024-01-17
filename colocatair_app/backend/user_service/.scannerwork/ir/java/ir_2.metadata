@@ -1,3 +1,0 @@
-ma.emsi.user_service.controller.UserController#chercherClients()Ljava/util/List;
-==
-findAll ma.emsi.user_service.service.UserService#findAll()Ljava/util/List;

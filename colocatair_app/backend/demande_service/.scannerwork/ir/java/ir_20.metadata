@@ -1,4 +1,0 @@
-ma.emsi.demande_service.controller.DemandeController#chercherUnDemande(Ljava/lang/Long;)Lma/emsi/demande_service/model/Demande;
-java.util.Optional#orElseThrow(Ljava/util/function/Supplier;)Ljava/lang/Object;
-==
-findById ma.emsi.demande_service.service.DemandeService#findById(Ljava/lang/Long;)Ljava/util/Optional;

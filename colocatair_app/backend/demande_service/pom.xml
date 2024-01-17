@@ -16,7 +16,9 @@
 	<properties>
 		<java.version>17</java.version>
 		<spring-cloud.version>2023.0.0</spring-cloud.version>
-
+		<sonar.coverage.jacoco.xmlReportPaths>
+			../app-it/target/site/jacoco-aggregate/jacoco.xml
+		</sonar.coverage.jacoco.xmlReportPaths>
 
 	</properties>
 	<dependencies>
@@ -104,6 +106,16 @@
 				<groupId>org.jacoco</groupId>
 				<artifactId>jacoco-maven-plugin</artifactId>
 				<version>0.8.7</version>
+				<configuration>
+					<excludes>
+						<exclude>
+<!--							ma/emsi/demande_service/model/User.class-->
+<!--							ma/emsi/demande_service/model/Offer.class-->
+<!--							ma/emsi/demande_service/model/Demande.class-->
+
+						</exclude>
+					</excludes>
+				</configuration>
 				<executions>
 					<execution>
 						<goals>

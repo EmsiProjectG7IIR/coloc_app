@@ -1,47 +1,0 @@
-
-Yma.emsi.offre_service.service.OfferService#findById(Ljava/lang/Long;)Ljava/util/Optional;µ
-ª/C:/Users/casper/Documents/emsi5/essabar/offreserviceApp/colocatair_app/colocatair_app/backend/offre_service/src/main/java/ma/emsi/offre_service/service/OfferService.java, ,(#"startingBlock*þ
-startingBlock,# ,(,‡
-„
-+ +(
-%2"
-__annotate*2
-
-__unknown_file (
-java.lang.Override*2
-
-__unknown_file (
-
-idjava.lang.LongT
-R
-,) ,(+
-idjava.lang.Long"__annotation*"
-
-__unknown_file (
-
-%2*
-1*•
-1- -(¬
-©
-- -(6
-%00ma.emsi.offre_service.repository.OfferRepository"__id*_
-
-__unknown_file (C*A,
-*ma.emsi.offre_service.service.OfferService"
-offerRepository®«
-- -(+
-%1java.util.Optional"_ma.emsi.offre_service.repository.OfferRepository#findById(Ljava/lang/Long;)Ljava/util/Optional;*T
-
-__unknown_file (8
-6
-%00ma.emsi.offre_service.repository.OfferRepository*2
-
-__unknown_file (
-
-idjava.lang.Long2findById(Ljava/lang/Long;)"&
-- -(,
-
-%1java.util.Optional: 
-,$ ,(+
-idjava.lang.LongB.,
-*ma.emsi.offre_service.service.OfferServiceH

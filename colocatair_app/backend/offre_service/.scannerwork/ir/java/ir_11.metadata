@@ -1,8 +1,0 @@
-ma.emsi.offre_service.OffreServiceApplicationTests#testSaveOfferUserNotFound()V
-null
-java.util.Date#<init>()V
-ma.emsi.offre_service.entites.Offer#instance-init#
-java.util.Date#instance-init#
-==
-save ma.emsi.offre_service.service.OfferService#save(Lma/emsi/offre_service/entites/Offer;)Lma/emsi/offre_service/entites/Offer;
-userById ma.emsi.offre_service.service.UserService#userById(Ljava/lang/Long;)Lma/emsi/offre_service/entites/User;

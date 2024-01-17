@@ -1,3 +1,0 @@
-ma.emsi.demande_service.service.DemandeService#update(Lma/emsi/demande_service/model/Demande;)V
-==
-update ma.emsi.demande_service.repository.DemandeRepository#update(Lma/emsi/demande_service/model/Demande;)V

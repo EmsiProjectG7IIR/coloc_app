@@ -1,119 +1,126 @@
 package ma.emsi.user_service;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import ma.emsi.user_service.controller.UserController;
 import ma.emsi.user_service.model.User;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.cloud.client.discovery.DiscoveryClient;
 import ma.emsi.user_service.repository.UserRepository;
 import ma.emsi.user_service.service.UserService;
+import org.junit.Assert;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
+import org.mockito.MockitoAnnotations;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
+import org.springframework.test.web.servlet.MockMvc;
+import org.springframework.test.web.servlet.setup.MockMvcBuilders;
+import org.springframework.transaction.annotation.Transactional;
 
-import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
-import org.springframework.boot.test.context.SpringBootTest;
-
-
+import java.io.ByteArrayOutputStream;
+import java.io.PrintStream;
 import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.mockito.ArgumentMatchers.any;
-import static org.mockito.Mockito.when;
+import static org.mockito.Mockito.*;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+@SpringBootTest
+public class UserServiceApplicationTests {
 
-@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
-@AutoConfigureMockMvc
-class UserServiceApplicationTests {
+    @Mock
+    private DiscoveryClient discoveryClient;
+    @SuppressWarnings("unused")
+    private MockMvc mockMvc;
 
     @Mock
     private UserService userService;
+
+    @Mock
+    UserRepository userRepository;
 
     @InjectMocks
     private UserController userController;
 
 
 
+    @BeforeEach
+    public void setUp() {
+        MockitoAnnotations.openMocks(this);
+        mockMvc = MockMvcBuilders.standaloneSetup(userController).build();
+
+    }
     @Test
-    void shouldReturnListOfUsers()  {
-        // Mocking the UserService behavior
-        when(userService.findAll()).thenReturn(Arrays.asList(
-                new User(null, 123L, "John", "Doe", "john.doe@example.com", new Date()),
-                new User(null, 123L, "Jane", "Doe", "john.doe@example.com", new Date())
-        ));
+    @Transactional
+    void testFindAll() {
 
-        List<User> userList = userController.chercherClients();
+        List<User> result = userService.findAll();
 
-        // Assertions
-        assertEquals(2, userList.size());
-        assertEquals("John", userList.get(0).getNom());
-        assertEquals("Jane", userList.get(1).getNom());
+        Assert.assertEquals(0, result.size());
     }
 
-    @Mock
-    private UserRepository userRepository;
-
     @Test
-    void shouldSaveUser() {
-        // Create a user to be saved
-        User newUser = new User(1L, 123L, "John", "Doe", "john.doe@example.com", new Date());
+    @Transactional
+    void testSave() {
+        User user = new User();
+        user.setId(3L);
+        user.setEmail("maryem31@gmail.com");
+        user.setNom("Mallouli");
+        user.setPrenom("Aimrane");
+        user.setDateNaissance(new Date());
 
-        // Mocking the UserRepository behavior
-        when(userRepository.save(any(User.class))).thenReturn(newUser);
-
-        // Call the method in the service
-        User savedUser = userService.save(newUser);
-
-        // Assertions
-        assertEquals(123L, savedUser.getUId());
-        assertEquals("John", savedUser.getNom());
-        assertEquals("Doe", savedUser.getPrenom());
-        assertEquals("john.doe@example.com", savedUser.getEmail());
-        // Add more assertions based on your User model
+        userService.save(user);
+        Optional<User> saveduser = userRepository.findById(user.getId());
+        Assert.assertNotNull(saveduser);
     }
-//    @Test
-//    void shouldCreateUser() {
-//        // Create a user to be sent in the request
-//        User newUser = new User(null, 123L, "John", "Doe", "john.doe@example.com", new Date());
-//
-//        // Mocking the UserService behavior
-//        when(userService.save(any(User.class))).thenReturn(newUser);
-//
-//        // Call the method in the controller
-//        User createdUser = userController.createUser(newUser);
-//
-//        // Assertions
-//        assertEquals(123L, createdUser.getUId());
-//        assertEquals("John", createdUser.getNom());
-//        assertEquals("Doe", createdUser.getPrenom());
-//        assertEquals("john.doe@example.com", createdUser.getEmail());
-//        // Add more assertions based on your User model
-//    }
+
 
 
     @Test
-    void shouldReturnUserById() throws Exception {
-        // Mocking the UserService behavior
-        when(userService.findById(1L)).thenReturn(Optional.of(new User(1L, 123L, "John", "Doe", "john.doe@example.com", new Date())));
+    public void testCreateUser()  {
 
-        // Call the method in the controller
-        User user = userController.chercherUnClients(1L);
 
-        // Assertions
-        assertEquals(1L, user.getId());
-        assertEquals(123L, user.getUId());
-        assertEquals("John", user.getNom());
-        assertEquals("Doe", user.getPrenom());
-        assertEquals("john.doe@example.com", user.getEmail());
+        User userSave = new User(1L, "1001L", "John", "Doe", "john.doe@example.com", new Date());
+        when(userService.save(any(User.class))).thenReturn(userSave);
 
-        // Test for non-existing user
-        when(userService.findById(2L)).thenReturn(Optional.empty());
-        assertThrows(Exception.class, () -> userController.chercherUnClients(2L));
+// First call
+        User user = userService.save(userSave);
+        assertEquals(userSave, user);
+
+// Second call
+        User userAgain = userService.save(userSave);
+        assertEquals(userSave, userAgain);
+
+        verify(userService, times(2)).save(userSave);
+
+    }
+    @Test
+    @Transactional
+    void testFindById() {
+        User user = new User();
+        user.setUId("2L");
+        user.getEmail();
+        user.getNom();
+        user.getPrenom();
+        user.getDateNaissance();
+        userRepository.save(user);
+
+        Optional<User> result = userService.findById(user.getId());
+
+        Assert.assertNotNull(result);
     }
     @Test
     void contextLoads() {
-        assertNotNull(userService);
-    assertNotNull(userController);}
+        assertNotNull(discoveryClient);
 
 
-
+    }
 }

@@ -1,3 +1,0 @@
-ma.emsi.offre_service.controller.OfferController#saveOffre(Lma/emsi/offre_service/entites/Offer;)Lma/emsi/offre_service/entites/Offer;
-==
-save ma.emsi.offre_service.service.OfferService#save(Lma/emsi/offre_service/entites/Offer;)Lma/emsi/offre_service/entites/Offer;

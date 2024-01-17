@@ -1,36 +1,0 @@
-
-qma.emsi.user_service.service.UserService#save(Lma/emsi/user_service/model/User;)Lma/emsi/user_service/model/User;²
-§/C:/Users/casper/Documents/emsi5/essabar/offreserviceApp/colocatair_app/colocatair_app/backend/user_service/src/main/java/ma/emsi/user_service/service/UserService.java ("startingBlock*¤
-startingBlock (š
-—
- (
-%1"
-__annotate*2
-
-__unknown_file (
-java.lang.Override*E
-
-__unknown_file ()
-'
-userma.emsi.user_service.model.Userg
-e
- ('
-userma.emsi.user_service.model.User"__annotation*"
-
-__unknown_file (
-
-%1*
-1*Ë
-1 (§
-¤
- (4
-%0.ma.emsi.user_service.repository.UserRepository"__id*\
-
-__unknown_file (@*>*
-(ma.emsi.user_service.service.UserService"
-userRepository"
- ()
-"":3
- ('
-userma.emsi.user_service.model.UserB,*
-(ma.emsi.user_service.service.UserServiceH

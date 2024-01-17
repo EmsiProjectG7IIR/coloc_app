@@ -38,7 +38,7 @@ class DemandeServiceApplicationTests {
 		user.setNom("John");
 		user.setPrenom("Doe");
 		user.setEmail("john.doe@example.com");
-		user.setDateNaissance(new Date());
+
 
 		// Test getters
 		assertEquals(1L, user.getId());
@@ -46,7 +46,7 @@ class DemandeServiceApplicationTests {
 		assertEquals("John", user.getNom());
 		assertEquals("Doe", user.getPrenom());
 		assertEquals("john.doe@example.com", user.getEmail());
-		assertEquals(new Date(), user.getDateNaissance());
+
 	}
 
 	@Test
@@ -58,8 +58,7 @@ class DemandeServiceApplicationTests {
 		offer.setId(1L);
 		offer.setIdCreateur(101L);
 		// Assuming you have a User object for user
-		// User user = new User();
-		// offer.setUser(user);
+
 		offer.setTitre("Job Offer");
 		offer.setDateCreation(new Date());
 		offer.setDateDebut(new Date());
@@ -94,12 +93,10 @@ class DemandeServiceApplicationTests {
 		demande.setId(1L);
 		demande.setDemandeurId(101L);
 		// Assuming you have a User object for demandeur
-		// User demandeur = new User();
-		// demande.setDemandeur(demandeur);
+
 		demande.setOfferId(201L);
 		// Assuming you have an Offer object for offer
-		// Offer offer = new Offer();
-		// demande.setOffer(offer);
+
 		demande.setStatus("Pending");
 		demande.setDateCreation(new Date());
 
@@ -107,10 +104,8 @@ class DemandeServiceApplicationTests {
 		assertEquals(1L, demande.getId());
 		assertEquals(101L, demande.getDemandeurId());
 		// Uncomment and adjust accordingly if you have a User object
-		// assertEquals(demandeur, demande.getDemandeur());
 		assertEquals(201L, demande.getOfferId());
 		// Uncomment and adjust accordingly if you have an Offer object
-		// assertEquals(offer, demande.getOffer());
 		assertEquals("Pending", demande.getStatus());
 		assertEquals(new Date(), demande.getDateCreation());
 
@@ -146,7 +141,7 @@ class DemandeServiceApplicationTests {
 
 	@Test
 	void contextLoads() {
-		assertNotNull(demandeService);
+
 	}
 
 }

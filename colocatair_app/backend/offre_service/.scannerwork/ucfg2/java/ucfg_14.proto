@@ -1,21 +1,0 @@
-
-Jma.emsi.offre_service.controller.OfferController#findAll()Ljava/util/List;»
-°/C:/Users/casper/Documents/emsi5/essabar/offreserviceApp/colocatair_app/colocatair_app/backend/offre_service/src/main/java/ma/emsi/offre_service/controller/OfferController.java ("1*¤
-1 (©
-¦
- (0
-%0*ma.emsi.offre_service.service.OfferService"__id*b
-
-__unknown_file (F*D2
-0ma.emsi.offre_service.controller.OfferController"
-offerServiceÄÁ
- (%
-%1java.util.List"Dma.emsi.offre_service.service.OfferService#findAll()Ljava/util/List;*N
-
-__unknown_file (2
-0
-%0*ma.emsi.offre_service.service.OfferService2	findAll()""
- (&
-
-%1java.util.ListB42
-0ma.emsi.offre_service.controller.OfferControllerH

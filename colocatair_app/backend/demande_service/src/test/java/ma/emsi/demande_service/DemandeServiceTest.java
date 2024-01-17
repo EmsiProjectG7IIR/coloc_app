@@ -1,15 +1,17 @@
 package ma.emsi.demande_service;
 
 import ma.emsi.demande_service.model.Demande;
+import ma.emsi.demande_service.model.Offer;
+import ma.emsi.demande_service.model.User;
 import ma.emsi.demande_service.repository.DemandeRepository;
+import ma.emsi.demande_service.service.DemandeService;
+import ma.emsi.demande_service.service.OfferService;
+import ma.emsi.demande_service.service.UserService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
-
-import java.util.ArrayList;
-import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.*;
