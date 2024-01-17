@@ -1,0 +1,16 @@
+<project>
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>ma.emsi</groupId>
+    <artifactId>backend</artifactId>
+    <version>0.0.1</version>
+    <packaging>pom</packaging>
+
+    <modules>
+        <module>demande_service</module>
+        <module>eureka_server</module>
+        <module>user_service</module>
+        <module>offre_service</module>
+        <module>gateway_service</module>
+
+    </modules>
+</project>
