@@ -56,9 +56,9 @@ class OffreServiceApplicationTests {
     @Test
     void testSaveOffer() {
         // Arrange
-        User user = new User(1L, 101L, "John", "Doe", "john.doe@example.com", new Date());
-        Offer offerToSave = new Offer(1L, 101L, user, TESTOFFER,
-                DESCRIPTION, OFFERADDRESS, 100.0, true, OFFERIMAGE);
+        User user = new User(1L, "101L", "John", "Doe", "john.doe@example.com", new Date());
+        Offer offerToSave = new Offer(1L, "101L", user, TESTOFFER,
+                DESCRIPTION, OFFERADDRESS, 100.0, "true", OFFERIMAGE);
 
         // Mocking the behavior of userService.userById and offerRepository.save
         when(userService.userById(101L)).thenReturn(user);
@@ -79,8 +79,8 @@ class OffreServiceApplicationTests {
     @Test
     void testSaveOfferUserNotFound() {
         // Arrange
-        Offer offerToSave = new Offer(1L, 101L, null, TESTOFFER,
-                DESCRIPTION, OFFERADDRESS, 100.0, true, "offer1.jpg");
+        Offer offerToSave = new Offer(1L, "101L", null, TESTOFFER,
+                DESCRIPTION, OFFERADDRESS, 100.0, "true", "offer1.jpg");
 
         // Mocking the behavior of userService.userById
         when(userService.userById(101L)).thenReturn(null);
@@ -98,8 +98,8 @@ class OffreServiceApplicationTests {
     @Test
     void testDeleteOffer() {
         // Arrange
-        Offer offerToDelete = new Offer(1L, 101L, null, TESTOFFER,
-                DESCRIPTION, OFFERADDRESS, 100.0, true, OFFERIMAGE);
+        Offer offerToDelete = new Offer(1L, "101L", null, TESTOFFER,
+                DESCRIPTION, OFFERADDRESS, 100.0, "true", OFFERIMAGE);
 
         // Act
         offerService.delete(offerToDelete);
@@ -112,8 +112,8 @@ class OffreServiceApplicationTests {
     void testFindOfferById() {
         // Arrange
         long offerId = 1L;
-        Offer expectedOffer = new Offer(offerId, 101L, null, TESTOFFER,
-                DESCRIPTION, OFFERADDRESS, 100.0, true, OFFERIMAGE);
+        Offer expectedOffer = new Offer(offerId, "101L", null, TESTOFFER,
+                DESCRIPTION, OFFERADDRESS, 100.0, "true", OFFERIMAGE);
 
         // Mocking the behavior of offerRepository.findById
         when(offerRepository.findById(offerId)).thenReturn(Optional.of(expectedOffer));
@@ -132,10 +132,10 @@ class OffreServiceApplicationTests {
     void testFindAllOffers() {
         // Arrange
         List<Offer> offerList = new ArrayList<>();
-        offerList.add(new Offer(1L, 101L, null, "Test Offer 1",
-                "Offer Description 1", OFFERADDRESS, 100.0, true, "offer1.jpg"));
-        offerList.add(new Offer(2L, 102L, null, "Test Offer 2",
-                "Offer Description 2", OFFERADDRESS, 200.0, false, "offer2.jpg"));
+        offerList.add(new Offer(1L, "101L", null, "Test Offer 1",
+                "Offer Description 1", OFFERADDRESS, 100.0, "true", "offer1.jpg"));
+        offerList.add(new Offer(2L, "102L", null, "Test Offer 2",
+                "Offer Description 2", OFFERADDRESS, 200.0, "false", "offer2.jpg"));
 
         // Mocking the behavior of offerRepository.findAll
         when(offerRepository.findAll()).thenReturn(offerList);

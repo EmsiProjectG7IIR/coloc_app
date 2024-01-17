@@ -34,5 +34,8 @@ public class UserController {
     }
 
 
-
+    @GetMapping("/findByUid/{uid}")
+    public User chercherUnUser(@PathVariable String uid) {
+        return userService.findByUid(uid);
+    }
 }
