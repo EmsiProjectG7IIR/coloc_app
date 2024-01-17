@@ -57,7 +57,7 @@ class OffreServiceApplicationTests {
     void testSaveOffer() {
         // Arrange
         User user = new User(1L, 101L, "John", "Doe", "john.doe@example.com", new Date());
-        Offer offerToSave = new Offer(1L, 101L, user, TESTOFFER, new Date(), new Date(), new Date(),
+        Offer offerToSave = new Offer(1L, 101L, user, TESTOFFER,
                 DESCRIPTION, OFFERADDRESS, 100.0, true, OFFERIMAGE);
 
         // Mocking the behavior of userService.userById and offerRepository.save
@@ -79,7 +79,7 @@ class OffreServiceApplicationTests {
     @Test
     void testSaveOfferUserNotFound() {
         // Arrange
-        Offer offerToSave = new Offer(1L, 101L, null, TESTOFFER, new Date(), new Date(), new Date(),
+        Offer offerToSave = new Offer(1L, 101L, null, TESTOFFER,
                 DESCRIPTION, OFFERADDRESS, 100.0, true, "offer1.jpg");
 
         // Mocking the behavior of userService.userById
@@ -98,7 +98,7 @@ class OffreServiceApplicationTests {
     @Test
     void testDeleteOffer() {
         // Arrange
-        Offer offerToDelete = new Offer(1L, 101L, null, TESTOFFER, new Date(), new Date(), new Date(),
+        Offer offerToDelete = new Offer(1L, 101L, null, TESTOFFER,
                 DESCRIPTION, OFFERADDRESS, 100.0, true, OFFERIMAGE);
 
         // Act
@@ -112,7 +112,7 @@ class OffreServiceApplicationTests {
     void testFindOfferById() {
         // Arrange
         long offerId = 1L;
-        Offer expectedOffer = new Offer(offerId, 101L, null, TESTOFFER, new Date(), new Date(), new Date(),
+        Offer expectedOffer = new Offer(offerId, 101L, null, TESTOFFER,
                 DESCRIPTION, OFFERADDRESS, 100.0, true, OFFERIMAGE);
 
         // Mocking the behavior of offerRepository.findById
@@ -132,9 +132,9 @@ class OffreServiceApplicationTests {
     void testFindAllOffers() {
         // Arrange
         List<Offer> offerList = new ArrayList<>();
-        offerList.add(new Offer(1L, 101L, null, "Test Offer 1", new Date(), new Date(), new Date(),
+        offerList.add(new Offer(1L, 101L, null, "Test Offer 1",
                 "Offer Description 1", OFFERADDRESS, 100.0, true, "offer1.jpg"));
-        offerList.add(new Offer(2L, 102L, null, "Test Offer 2", new Date(), new Date(), new Date(),
+        offerList.add(new Offer(2L, 102L, null, "Test Offer 2",
                 "Offer Description 2", OFFERADDRESS, 200.0, false, "offer2.jpg"));
 
         // Mocking the behavior of offerRepository.findAll

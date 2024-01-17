@@ -28,6 +28,19 @@ public class Offer {
     private boolean status;
     private String photo;
 
+    public Offer(Long id, Long idCreateur, User user, String titre, String description, String adresse, double montant, boolean status, String photo) {
+        this.id = id;
+        this.idCreateur = idCreateur;
+        this.user = user;
+        this.titre = titre;
+        this.description = description;
+        this.adresse = adresse;
+        this.montant = montant;
+        this.status = status;
+        this.photo = photo;
+    }
+
+
     @Override
     public String toString() {
         return "Offer{" +

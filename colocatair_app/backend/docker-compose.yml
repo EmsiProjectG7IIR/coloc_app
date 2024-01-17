@@ -1,0 +1,70 @@
+version: '3'
+services:
+  eureka_server:
+    build:
+      context: ./eureka_server
+    ports:
+      - "8761:8761"
+
+  mysqldb:
+    image: mysql:latest
+    ports:
+      - 3306:3306
+
+
+  demande-service:
+    build:
+      context: ./demande_service
+    ports:
+      - "8082:8082"
+    depends_on:
+      - eureka_server
+      - mysqldb_demande
+    environment:
+      DATABASE_URL: jdbc:mysql://mysqldb:3306/demande_db
+      eureka.client.serviceUrl.defaultZone: http://eureka-server:8761/eureka
+
+#-------offer-----#
+  mysqldb_offer:
+    container_name: mysqldb_user
+    image: mysql
+    ports:
+      - "3306:3306"
+    environment:
+      MYSQL_DATABASE: offer_db
+      MYSQL_ROOT_PASSWORD:
+
+  offre-service:
+    build:
+      context: ./offre_service
+    ports:
+      - "8087:8087"
+    depends_on:
+      - mysqldb_offer
+      - eureka_server
+    environment:
+      DATABASE_URL: jdbc:mysql://mysqldb_user:3306/offer_db
+      eureka.client.serviceUrl.defaultZone: http://eureka-server:8761/eureka
+
+
+#----User---#
+  mysqldb_user:
+    container_name: mysqldb_user
+    image: mysql
+    ports:
+      - "3306:3306"
+    environment:
+      MYSQL_DATABASE: user_db
+      MYSQL_ROOT_PASSWORD:
+  user_service:
+    build:
+      context: ./user_service
+    ports:
+      - "8088:8088"
+    depends_on:
+      - eureka_server
+      - mysqldb_user
+    environment:
+      DATABASE_URL: jdbc:mysql://mysqldb_user:3306/user_db
+      eureka.client.serviceUrl.defaultZone: http://eureka-server:8761/eureka
+
