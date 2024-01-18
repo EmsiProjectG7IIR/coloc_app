@@ -1,0 +1,35 @@
+pipeline {
+    agent any
+
+    stages {
+        stage("Build & SonarQube Scanner") {
+            steps {
+                script {
+                    withSonarQubeEnv('SonarCloud') {
+                        // Navigate to the project directory
+                        dir('colocatair_app/backend/eureka_server') {
+                            // Run Maven commands with sonar.organization property
+                            bat 'mvn clean package sonar:sonar -Dsonar.organization=yahyamallouli -Dsonar.projectKey=yahyamallouli_eurekaserver'
+                        }
+                    }
+                }
+            }
+        }
+
+        stage('Create Docker Image') {
+            steps {
+                // Navigate to the directory containing the Dockerfile
+                dir('colocatair_app/backend/eureka_server') {
+                    bat 'docker build -t eurekaserver/pos .'
+                }
+            }
+        }
+
+        stage('Run Docker Container') {
+            steps {
+                // Run the Docker container
+                bat 'docker run -d -p 8761:8761 eurekaserver/pos'
+            }
+        }
+    }
+}
