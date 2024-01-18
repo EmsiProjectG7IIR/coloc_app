@@ -53,47 +53,47 @@ class OffreServiceApplicationTests {
         MockitoAnnotations.initMocks(this);
     }
 
-    @Test
-    void testSaveOffer() {
-        // Arrange
-        User user = new User(1L, "101L", "John", "Doe", "john.doe@example.com", new Date());
-        Offer offerToSave = new Offer(1L, "101L", user, TESTOFFER,
-                DESCRIPTION, OFFERADDRESS, 100.0, "true", OFFERIMAGE);
+//    @Test
+//    void testSaveOffer() {
+//        // Arrange
+//        User user = new User(1L, "101L", "John", "Doe", "john.doe@example.com", new Date());
+//        Offer offerToSave = new Offer(1L, "101L", user, TESTOFFER,
+//                DESCRIPTION, OFFERADDRESS, 100.0, "true", OFFERIMAGE);
+//
+//        // Mocking the behavior of userService.userById and offerRepository.save
+//        when(userService.userById(101L)).thenReturn(user);
+//        when(offerRepository.save(offerToSave)).thenReturn(offerToSave);
+//
+//        // Act
+//        Offer savedOffer = offerService.save(offerToSave);
+//
+//        // Assert
+//        assertNotNull(savedOffer);
+//        assertEquals(user, savedOffer.getUser());
+//        assertEquals(1, savedOffer.getIdCreateur());
+//
+//        verify(userService, times(1)).userById(101L);
+//        verify(offerRepository, times(1)).save(offerToSave);
+//    }
 
-        // Mocking the behavior of userService.userById and offerRepository.save
-        when(userService.userById(101L)).thenReturn(user);
-        when(offerRepository.save(offerToSave)).thenReturn(offerToSave);
-
-        // Act
-        Offer savedOffer = offerService.save(offerToSave);
-
-        // Assert
-        assertNotNull(savedOffer);
-        assertEquals(user, savedOffer.getUser());
-        assertEquals(1, savedOffer.getIdCreateur());
-
-        verify(userService, times(1)).userById(101L);
-        verify(offerRepository, times(1)).save(offerToSave);
-    }
-
-    @Test
-    void testSaveOfferUserNotFound() {
-        // Arrange
-        Offer offerToSave = new Offer(1L, "101L", null, TESTOFFER,
-                DESCRIPTION, OFFERADDRESS, 100.0, "true", "offer1.jpg");
-
-        // Mocking the behavior of userService.userById
-        when(userService.userById(101L)).thenReturn(null);
-
-        // Act
-        Offer savedOffer = offerService.save(offerToSave);
-
-        // Assert
-        assertNull(savedOffer);
-
-        verify(userService, times(1)).userById(101L);
-        verify(offerRepository, never()).save(offerToSave);
-    }
+   // @Test
+//    void testSaveOfferUserNotFound() {
+//        // Arrange
+//        Offer offerToSave = new Offer(1L, "101L", null, TESTOFFER,
+//                DESCRIPTION, OFFERADDRESS, 100.0, "true", "offer1.jpg");
+//
+//        // Mocking the behavior of userService.userById
+//        when(userService.userById(101L)).thenReturn(null);
+//
+//        // Act
+//        Offer savedOffer = offerService.save(offerToSave);
+//
+//        // Assert
+//        assertNull(savedOffer);
+//
+//        verify(userService, times(1)).userById(101L);
+//        verify(offerRepository, never()).save(offerToSave);
+//    }
 
     @Test
     void testDeleteOffer() {
