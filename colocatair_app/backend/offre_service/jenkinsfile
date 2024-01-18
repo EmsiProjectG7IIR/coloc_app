@@ -15,5 +15,20 @@ pipeline {
                 }
             }
         }
+
+        stage('Create Docker Image') {
+            steps {
+                bat 'docker build -t yahya/pos .'
+            }
+        }
+
+        stage('Run') {
+            steps {
+                script {
+                    bat "docker run --name test-pos -d -p 8585:8282 yahya/pos"
+                }
+            }
+        }
+
     }
 }
