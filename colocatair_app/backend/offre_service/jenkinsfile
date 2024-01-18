@@ -18,9 +18,11 @@ pipeline {
 
         stage('Create Docker Image') {
             steps {
-                bat 'docker build -t yahya/pos .'
+                // Navigate to the directory containing the Dockerfile
+                dir('colocatair_app/backend/offre_service') {
+                    bat 'docker build -t yahya/pos .'
+                }
             }
         }
-
     }
 }
