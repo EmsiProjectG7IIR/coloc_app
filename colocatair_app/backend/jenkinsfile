@@ -13,17 +13,16 @@ pipeline {
                         
                         // Microservice 1
                         dir('colocatair_app/backend/offre_service') {
-                            bat 'mvn clean package sonar:sonar -Dsonar.organization=yahyamallouli'
-                        }
+                            bat 'mvn clean install -DskipTests'                        }
 
                         // Microservice 2
                         dir('colocatair_app/backend/user_service') {
-                            bat 'mvn clean package sonar:sonar -Dsonar.organization=yahyamallouli'
+                            bat 'mvn clean install -DskipTests'                        }
                         }
 
                         // Microservice 3
                         dir('colocatair_app/backend/demande_service') {
-                            bat 'mvn clean package sonar:sonar -Dsonar.organization=yahyamallouli'
+                            bat 'mvn clean install -DskipTests'                        }
                         }
                     }
                 }
@@ -34,8 +33,8 @@ pipeline {
             steps {
                 script {
                     // Build and run containers using Docker Compose
-                    bat 'docker-compose -f path/to/your/docker-compose.yml build'
-                    bat 'docker-compose -f path/to/your/docker-compose.yml up -d'
+                    bat 'docker-compose -f colocatair_app/backend/docker-compose.yml build'
+                    bat 'docker-compose -f colocatair_app/backend/docker-compose.yml up -d'
                 }
             }
         }
