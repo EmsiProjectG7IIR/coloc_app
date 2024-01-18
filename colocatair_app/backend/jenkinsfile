@@ -25,21 +25,12 @@ pipeline {
             }
         }
 
-        stage('Create Docker Images') {
+        stage('Build & Run Docker Containers') {
             steps {
-                // Microservice 1
-                dir('colocatair_app/backend/microservice1') {
-                    bat 'docker build -t yahya/offre_service .'
-                }
-
-                // Microservice 2
-                dir('colocatair_app/backend/user_service') {
-                    bat 'docker build -t yahya/microservice2 .'
-                }
-
-                // Microservice 3
-                dir('colocatair_app/backend/demande_service') {
-                    bat 'docker build -t yahya/microservice3 .'
+                script {
+                    // Build and run containers using Docker Compose
+                    bat 'docker-compose -f path/to/your/docker-compose.yml build'
+                    bat 'docker-compose -f path/to/your/docker-compose.yml up -d'
                 }
             }
         }
