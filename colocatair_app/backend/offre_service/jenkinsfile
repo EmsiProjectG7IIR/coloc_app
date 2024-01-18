@@ -9,7 +9,7 @@ pipeline {
                         // Navigate to the project directory
                         dir('colocatair_app/backend/offre_service') {
                             // Run Maven commands with sonar.organization property
-                            bat 'mvn clean package sonar:sonar -Dsonar.organization=yahyamallouli -Dsonar.projectKey=yahyamallouli_offerservice'
+                            bat 'mvn clean package sonar:sonar -Dsonar.organization=yahyamallouli -Dsonar.projectKey=yahyamallouli_eurekaserver'
                         }
                     }
                 }
@@ -20,8 +20,15 @@ pipeline {
             steps {
                 // Navigate to the directory containing the Dockerfile
                 dir('colocatair_app/backend/offre_service') {
-                    bat 'docker build -t yahya/pos .'
+                    bat 'docker build -t offreservice/pos .'
                 }
+            }
+        }
+
+        stage('Run Docker Container') {
+            steps {
+                // Run the Docker container
+                bat 'docker run -d -p 8087:8087 offreservice/pos'
             }
         }
     }
