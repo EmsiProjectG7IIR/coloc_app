@@ -1,0 +1,28 @@
+pipeline {
+    agent any
+
+    stages {
+        stage("Build & SonarQube Scanner") {
+            steps {
+                script {
+                    withSonarQubeEnv('SonarCloud') {
+                        // Navigate to the project directory
+                        dir('colocatair_app/backend/user_service') {
+                            // Run Maven commands with sonar.organization property
+                            bat 'mvn clean package sonar:sonar -Dsonar.organization=yahyamallouli'
+                        }
+                    }
+                }
+            }
+        }
+
+        stage('Create Docker Image') {
+            steps {
+                // Navigate to the directory containing the Dockerfile
+                dir('colocatair_app/backend/user_service') {
+                    bat 'docker build -t yahyauser/pos .'
+                }
+            }
+        }
+    }
+}
