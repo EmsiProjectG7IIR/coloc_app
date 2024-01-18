@@ -106,7 +106,7 @@ public class UserServiceApplicationTests {
     @Transactional
     void testFindById() {
         User user = new User();
-        user.setUId("2L");
+        user.setUid("2L");
         user.getEmail();
         user.getNom();
         user.getPrenom();
