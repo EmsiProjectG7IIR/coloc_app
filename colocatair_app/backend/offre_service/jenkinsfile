@@ -22,13 +22,5 @@ pipeline {
             }
         }
 
-        stage('Run') {
-            steps {
-                script {
-                    bat "docker run --name test-pos -d -p 8585:8282 yahya/pos"
-                }
-            }
-        }
-
     }
 }
