@@ -13,16 +13,16 @@ pipeline {
                         
                         // Microservice 1
                         dir('colocatair_app/backend/offre_service') {
-                            bat 'mvn clean install -DskipTests'                        }
+                            bat 'mvn clean package -DskipTests'                        }
 
                         // Microservice 2
                         dir('colocatair_app/backend/user_service') {
-                            bat 'mvn clean install -DskipTests'                        }
+                            bat 'mvn clean package -DskipTests'                        }
                         }
 
                         // Microservice 3
                         dir('colocatair_app/backend/demande_service') {
-                            bat 'mvn clean install -DskipTests'                        }
+                            bat 'mvn clean package -DskipTests'                        }
                         }
                     }
                 }
