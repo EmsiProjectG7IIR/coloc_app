@@ -6,6 +6,11 @@ pipeline {
             steps {
                 script {
                     withSonarQubeEnv('SonarCloud') {
+
+                        dir('colocatair_app/backend/eureka_server') {
+                            bat 'mvn clean package  '
+                        }
+                        
                         // Microservice 1
                         dir('colocatair_app/backend/offre_service') {
                             bat 'mvn clean package sonar:sonar -Dsonar.organization=yahyamallouli'
