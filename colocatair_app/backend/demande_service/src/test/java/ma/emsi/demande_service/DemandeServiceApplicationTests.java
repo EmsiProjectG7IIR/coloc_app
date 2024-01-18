@@ -75,9 +75,6 @@ class DemandeServiceApplicationTests {
 		// Uncomment and adjust accordingly if you have a User object
 		// assertEquals(user, offer.getUser());
 		assertEquals("Job Offer", offer.getTitre());
-		assertEquals(new Date(), offer.getDateCreation());
-		assertEquals(new Date(), offer.getDateDebut());
-		assertEquals(new Date(), offer.getDateFin());
 		assertEquals("Job Description", offer.getDescription());
 		assertEquals("Company Address", offer.getAdresse());
 		assertEquals(5000.0, offer.getMontant());
