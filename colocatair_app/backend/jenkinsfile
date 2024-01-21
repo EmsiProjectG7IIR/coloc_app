@@ -1,43 +1,35 @@
 pipeline {
     agent any
+    
+    tools {
+        maven 'maven'
+    }
+    
 
     stages {
-        stage("Build & SonarQube Scanner") {
+        stage('Git') {
             steps {
-                script {
-                    withSonarQubeEnv('SonarCloud') {
-                        // Microservice 1
-                        dir('colocatair_app/backend/offre_service') {
-                            bat 'mvn clean package sonar:sonar -Dsonar.organization=yahyamallouli'
-                        }
-
-                        // Microservice 2
-                        dir('colocatair_app/backend/user_service') {
-                            bat 'mvn clean package sonar:sonar -Dsonar.organization=yahyamallouli'
-                        }
-
-                        // Microservice 3
-                        dir('colocatair_app/backend/demande_service') {
-                            bat 'mvn clean package sonar:sonar -Dsonar.organization=yahyamallouli'
-                        }
-
-                        // Microservice 4 (Eureka Server)
-                        dir('colocatair_app/backend/eurekaserver') {
-                            bat 'mvn clean package sonar:sonar -Dsonar.organization=yahyamallouli'
-                        }
-                    }
-                }
+                git branch: 'main', url: 'https://github.com/EmsiProjectG7IIR/backend'
             }
         }
-
-        stage('Build & Run Docker Containers') {
+        
+        stage('Docker build') {
             steps {
-                script {
-                    // Build and run containers using Docker Compose
-                    bat 'docker-compose -f colocatair_app/backend/docker-compose.yml build'
-                    bat 'docker-compose -f colocatair_app/backend/docker-compose.yml up -d'
-                }
+                sh 'docker compose build --no-cache'
+            }
+        }
+        
+        stage('Docker run') {
+            steps {
+                sh 'docker compose up -d'
+            }
+        }
+        
+        stage('Cleanup') {
+            steps {
+                sh 'docker image prune -f'
             }
         }
     }
 }
+
