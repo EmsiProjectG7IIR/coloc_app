@@ -110,7 +110,7 @@ public class UserServiceApplicationTests {
         user.getEmail();
         user.getNom();
         user.getPrenom();
-        user.getDateNaissance();
+        // user.getDateNaissance();
         userRepository.save(user);
 
         Optional<User> result = userService.findById(user.getId());

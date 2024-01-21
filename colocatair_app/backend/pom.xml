@@ -7,7 +7,7 @@
 
     <modules>
         <module>demande_service</module>
-        <module>eureka_server</module>
+        <module>server</module>
         <module>user_service</module>
         <module>offre_service</module>
         <module>gateway_service</module>
